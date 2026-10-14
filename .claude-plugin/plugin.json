@@ -1,6 +1,6 @@
 {
   "name": "course-studio",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Plan and write technical courses, chapters, notes and cheat sheets, with every diagram built as an interactive isometric figure by the Anatomy skill.",
   "author": { "name": "Akshay Joshi", "url": "https://github.com/akshaypjoshi" },
   "homepage": "https://github.com/akshaypjoshi/course-studio",

@@ -38,4 +38,10 @@ test -f "$WS/courses/smoke/chapters/01-intro/figures/fig-01-idea/build.mjs"
 "$PY" "$SKILL/scripts/build_course.py" "$WS/courses/smoke"
 grep -q 'figure pending' "$WS/courses/smoke/dist/01-intro.html"
 
+# em dashes are caught: build warns, check reports
+printf '\nIt works \xe2\x80\x94 mostly.\n' >> "$WS/courses/smoke/chapters/01-intro/chapter.md"
+"$PY" "$SKILL/scripts/build_chapter.py" "$WS/courses/smoke/chapters/01-intro/chapter.md" | grep -q "WARNING: em dash"
+if "$PY" "$SKILL/scripts/check_pages.py" "$WS/courses/smoke/dist/01-intro.html" "$WS/shots-dash" | grep -q "em dash in page"; then :; else
+  echo "check_pages missed an em dash"; exit 1; fi
+
 echo "smoke test passed"

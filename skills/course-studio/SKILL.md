@@ -70,4 +70,5 @@ End with one line on what was made, what's pending (e.g. a figure still building
 - The chapter teaches one insight so well that the self-checks are easy *after* reading and hard before.
 - The figure is an Anatomy figure that passes Anatomy's own verification — not a diagram of boxes. It shows exactly the moments the text refers to, with the same numbers.
 - Nothing is padded; every code block has been run; every number is true.
+- **No em dashes in anything generated**: prose, `course.json` text, briefs, figure card text. Use commas, colons, parentheses or a new sentence (writing.md §4). Builds warn and checks report any that slip through.
 - Pages pass `check_pages.py` on desktop, phone and dark.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 — 2026-10-14
+
+- **No em dashes in generated content.** New writing rule covering chapters, notes, cheat sheets, `course.json` text, briefs and figure card text.
+- `build_chapter.py` warns with line numbers (ignoring code); `check_pages.py` reports any em dash visible on a page or inside a figure as a PROBLEM.
+- Markdown no longer converts `--`/`---` into dashes, and the pipeline itself no longer inserts any.
+
 ## 0.2.0 — 2026-10-14
 
 - **Anatomy is bundled.** The figure engine (kit, scripts, references, examples) now ships inside the skill at `skills/course-studio/anatomy/`, pinned to upstream `e6600ff` (v1.1.0+). Installing `akshaypjoshi/course-studio` is all you need.

@@ -6,7 +6,7 @@ Usage:
 
 For every page: JS errors (page and figures), figures that failed to load or are
 still pending, figure frames that are too short (clipped), horizontal page scroll
-(naming the element), empty sections. Saves a full-page PNG and one PNG per figure.
+(naming the element), empty sections, em dashes in visible text (page and figures). Saves a full-page PNG and one PNG per figure.
 Exit 1 on any problem. Then open the PNGs: the review is yours, not the script's.
 
 Needs: pip install playwright && playwright install chromium
@@ -34,6 +34,19 @@ FIGS_JS = """() => [...document.querySelectorAll('figure.figure, .figure.pending
   return { id: f.dataset.fig, pending: f.classList.contains('pending'), h: i ? i.clientHeight : 0, inner, clipped,
            errors: (i && i.contentWindow && i.contentWindow.__errs) || [] }; })"""
 
+
+# Visible text outside code, in the page and inside each figure frame.
+DASH_JS = r"""() => { const out = [];
+  function scan(doc, where) { if (!doc || !doc.body) return;
+    const w = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
+    let n; while ((n = w.nextNode())) { const p = n.parentElement;
+      if (!p || p.closest('pre, code, script, style')) continue;
+      const t = n.textContent, i = t.search(/[\u2014\u2015]| -- /);
+      if (i >= 0 && out.length < 12) out.push([where, t.slice(Math.max(0, i - 30), i + 30).replace(/\s+/g, ' ').trim()]); } }
+  scan(document, 'page');
+  document.querySelectorAll('figure.figure').forEach(f => { const i = f.querySelector('iframe');
+    try { scan(i && i.contentDocument, 'figure ' + f.dataset.fig); } catch (e) {} });
+  return out; }"""
 
 
 def check(page, path: Path, shots: Path, tag: str, problems: list):
@@ -67,6 +80,9 @@ def check(page, path: Path, shots: Path, tag: str, problems: list):
         return !n || n.tagName === 'H2'; }).map(h => h.textContent)""")
     for e in empty:
         problems.append(f"{tag}: section '{e}' is empty")
+    dashes = page.evaluate(DASH_JS)
+    for where, snippet in dashes:
+        problems.append(f"{tag}: em dash in {where}: \"{snippet}\"")
     for e in errs:
         if "Failed to load resource" not in e:
             problems.append(f"{tag}: page error: {e}")

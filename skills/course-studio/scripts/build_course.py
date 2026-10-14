@@ -81,7 +81,7 @@ def build_course(root: Path) -> Path:
 <ol class="syllabus">{''.join(items)}</ol></main>"""
     out = dist / "index.html"
     out.write_text(page(c["title"], body, accent_vars(c)), encoding="utf-8")
-    print(f"wrote {out} — {n_ch} chapters, {written} written")
+    print(f"wrote {out}: {n_ch} chapters, {written} written")
     return out
 
 
@@ -111,7 +111,7 @@ var f=b.dataset.f, n=0; document.querySelectorAll('.course-card').forEach(functi
 document.querySelector('.count').textContent=n+' courses';}});"""
     out = root / "catalog.html"
     out.write_text(page("Courses", body, "", css, js), encoding="utf-8")
-    print(f"wrote {out} — {len(courses)} courses")
+    print(f"wrote {out}: {len(courses)} courses")
     return out
 
 

@@ -37,7 +37,7 @@ Scaffold with `python3 scripts/workspace.py figure <chapter-dir> <fig-id>` (or `
 - **Truth** — the real model. For algorithms, the same algorithm as the chapter's code, with the same example input, so every number on the card matches the text. For systems, real numbers (latencies, rates, counts) you have verified. Write it as `figures/<id>/model.mjs` (a small pure module): `build.mjs` drives the readout and motion from it, and you can run it with `node -e` to produce the exact numbers the chapter quotes.
 - **The object** — start from `object-atlas.md`; state what moves and what that motion means, and the one-to-one mapping. If the course already has figures, keep the course's visual family (atlas, "Reuse across a course").
 - **Interaction & idle tour** — the beats the tour plays must be the moments the chapter text names ("watch the probe drop at 5, then 6").
-- **Card text** — `Fig k` (its position in the chapter), a 2–4 word title, the hint, legend keys, a true caption.
+- **Card text** — `Fig k` (its position in the chapter), a 2–4 word title, the hint, legend keys, a true caption. No em dashes in any of it (writing.md §4).
 
 A brief that leaves the object vague produces a vague figure. A brief whose numbers differ from the text produces a figure that contradicts the chapter. Both are the brief's fault.
 

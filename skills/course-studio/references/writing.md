@@ -48,6 +48,7 @@ The figure's idle tour, readout and caption must show exactly the moments the te
 - **Explain why each step exists.** "lo = mid + 1 because a[mid] is already too small", not "update lo".
 - **Name pitfalls precisely**: the line, the input, the symptom.
 - **Density over padding.** No "In this chapter we will…", "Let's dive in", restated headings, or motivational filler. The audience is busy engineers and serious students; respect their time.
+- **No em dashes (—) anywhere in generated content**: chapters, notes, cheat sheets, `course.json` text, figure briefs and card text (title, hint, readout, keys, caption). Use a comma, a colon, parentheses or a new sentence instead. Don't fake one with ` - ` or `--` either. En dashes in number ranges (`25–45 min`) are fine. `build_chapter.py` warns with line numbers and `check_pages.py` reports any that reach a page.
 - **One idea per paragraph**, 2–5 sentences. Bold only the phrase a skimmer must not miss — at most one per paragraph.
 - **Correctness is non-negotiable.** Run every code block (write it to a scratch file and execute it with a few inputs). Verify complexity claims, numbers and real-world claims; search for anything about current systems or versions.
 - **Point at the figure precisely.** "Watch the probe drop between blocks 4 and 7" — not "see the diagram".
@@ -104,6 +105,6 @@ Prose…
 Read the draft as the learner:
 1. Can each section's outcome sentence be ticked off?
 2. Is there any paragraph you'd skim? Cut or compress it.
-3. Does every code block run, and does the output in the text match?
+3. Does every code block run, and does the output in the text match? Are there zero em dashes?
 4. Does the text around each figure name moments the figure actually shows?
 5. Are the checks answerable from the chapter but not by copying a sentence?

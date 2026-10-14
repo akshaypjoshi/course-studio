@@ -35,11 +35,28 @@ CALLOUT_LABELS = {
     "KEY": "Key idea", "NOTE": "Note", "TRADEOFF": "Trade-off", "RECAP": "Recap",
 }
 MD_EXT = ["tables", "fenced_code", "codehilite", "sane_lists", "attr_list", "md_in_html", "smarty"]
-MD_CFG = {"codehilite": {"guess_lang": False, "css_class": "codehilite"}}
+MD_CFG = {"codehilite": {"guess_lang": False, "css_class": "codehilite"},
+          "smarty": {"smart_dashes": False}}  # never turn -- / --- into en/em dashes
 
 
 def md(text: str) -> str:
     return markdown.markdown(text, extensions=MD_EXT, extension_configs=MD_CFG)
+
+
+DASHES = ("\u2014", "\u2015", "&mdash;")  # em dash, horizontal bar, entity
+
+
+def dash_lines(src: str):
+    """Line numbers outside code (fences and `inline`) that contain an em dash or a ' -- ' stand-in."""
+    out, fence = [], False
+    for n, line in enumerate(src.split("\n"), 1):
+        if line.lstrip().startswith("```"):
+            fence = not fence
+            continue
+        text = re.sub(r"`[^`]*`", "", line)
+        if not fence and (any(d in text for d in DASHES) or " -- " in text):
+            out.append(n)
+    return out
 
 
 def split_front(src: str):
@@ -89,7 +106,7 @@ def figure_html(fid: str, caption: str, n: int, base: Path, figures: list) -> st
             what = esc(first[0][:220]) if first else ""
         figures.append({"id": fid, "status": "pending"})
         return (f'<div class="figure pending" data-fig="{esc(fid)}"><span class="fig-no">Fig {n} · pending</span>'
-                f'<p><b>{esc(fid)}</b>{" — " + what if what else ""}</p>'
+                f'<p><b>{esc(fid)}</b>{": " + what if what else ""}</p>'
                 f'{"<p>" + esc(caption) + "</p>" if caption else ""}</div>')
     figures.append({"id": fid, "status": "built", "dark": dark.name, "light": light.name})
     # both themes are embedded; the page script picks one and sizes the frame to its content
@@ -199,7 +216,13 @@ def main():
         sys.exit(__doc__)
     src_path = Path(sys.argv[1]).resolve()
     base = src_path.parent
-    fm, body = split_front(src_path.read_text(encoding="utf-8"))
+    src = src_path.read_text(encoding="utf-8")
+    fm, body = split_front(src)
+    bad = dash_lines(src)
+    for fdir in sorted((base / "figures").glob("*/")):
+        b = fdir / "brief.md"
+        if b.exists() and dash_lines(b.read_text(encoding="utf-8")):
+            print(f"WARNING: em dash in {b.relative_to(base)} (card text must not have any)")
 
     cj = find_course_json(base)
     course = load_course(cj) if cj else dict(FALLBACK, title=fm.get("course", ""), code=fm.get("glyph", ""))
@@ -267,9 +290,11 @@ def main():
     body_html = f'<main class="page">{crumbs}{hero}{outcomes}{toc_html}<article class="prose">{html_body}</article>{pager}</main>'
     out.write_text(page(fm.get("title", "Chapter"), body_html, accent_vars(course), code_css,
                         fig_script if any(f["status"] == "built" for f in figures) else ""), encoding="utf-8")
+    if bad:
+        print(f"WARNING: em dash in {src_path.name} on line(s) {', '.join(map(str, bad))}: rewrite with a comma, colon, parentheses or a new sentence")
     built = sum(f["status"] == "built" for f in figures)
     pending = [f["id"] for f in figures if f["status"] == "pending"]
-    print(f"wrote {out} — {len(toc)} sections, {built} figures embedded"
+    print(f"wrote {out}: {len(toc)} sections, {built} figures embedded"
           + (f", pending: {', '.join(pending)}" if pending else ""))
 
 

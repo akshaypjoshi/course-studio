@@ -36,7 +36,7 @@ def find_anatomy(explicit=None) -> Path:
             return Path(c)
         if c and c is explicit:
             sys.exit(f"--anatomy {c}: no kit/iso-kit.mjs there")
-    sys.exit(f"Anatomy engine missing from {SKILL / 'anatomy'} — reinstall course-studio.")
+    sys.exit(f"Anatomy engine missing from {SKILL / 'anatomy'}; reinstall course-studio.")
 
 
 def init(courses: Path, explicit=None):

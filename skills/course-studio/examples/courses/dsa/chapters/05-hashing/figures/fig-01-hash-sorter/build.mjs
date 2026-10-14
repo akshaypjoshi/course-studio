@@ -1,4 +1,4 @@
-// Figure fig-01-hash-sorter — built with the Anatomy skill.
+// Figure fig-01-hash-sorter, built with the Anatomy skill.
 //
 // Contract with course-studio:
 //   1. Imports the kit from the vendored copy: ../../../../../_anatomy/kit/iso-kit.mjs

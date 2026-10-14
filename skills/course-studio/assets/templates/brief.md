@@ -8,7 +8,7 @@
 - **Reader:** what they already know when they reach this figure (the paragraph before it)
 
 ## The idea it must make obvious
-One sentence a learner could say after playing with it. Not the topic — the insight.
+One sentence a learner could say after playing with it. Not the topic: the insight.
 
 ## Truth (the model)
 The real numbers and behaviour the figure must obey. Every readout, motion and caption number comes from this model.

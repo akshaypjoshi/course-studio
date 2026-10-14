@@ -1,4 +1,4 @@
-// Figure {{id}} — built with the Anatomy skill.
+// Figure {{id}}, built with the Anatomy skill.
 //
 // Contract with course-studio (keep these, replace everything else by following Anatomy's ANATOMY.md
 // and its closest example: {{ANATOMY}}/examples/dial-indicator/build.mjs is vendored; the others are

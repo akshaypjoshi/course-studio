@@ -12,7 +12,8 @@
         "brief.md fills every section (idea, truth, object, interaction, card text)",
         "Every code block in the chapter was executed during the session",
         "A complexity table and an [!INTERVIEW] callout with 3-5 named problems are present",
-        "check_pages.py was run and its only PROBLEM lines, if any, are deliberately pending figures"
+        "check_pages.py was run and its only PROBLEM lines, if any, are deliberately pending figures",
+        "No em dashes in chapter.md, brief.md or the figure card text"
       ]
     },
     {
@@ -25,7 +26,8 @@
         "every chapter has exactly one planned figure with a concept and a physical object",
         "chapter minutes sum to roughly the stated hours",
         "build_course.py was run and the syllabus page exists",
-        "no chapter.md was written without being asked"
+        "no chapter.md was written without being asked",
+        "no em dashes in course.json text (tagline, summaries, outcomes)"
       ]
     },
     {
@@ -37,7 +39,8 @@
         "front matter kind is cheatsheet",
         "no new figure folders were created",
         "no prose paragraph longer than two sentences",
-        "complexity numbers match the hashing chapter"
+        "complexity numbers match the hashing chapter",
+        "no em dashes anywhere in the cheat sheet"
       ]
     }
   ]
