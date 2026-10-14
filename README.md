@@ -20,7 +20,7 @@
   </picture>
 </p>
 
-Ask for *"the binary search chapter"*, *"notes on consistent hashing"* or *"a course on how SpaceX rockets work"* and you get a dense, verified chapter in Markdown, a signature figure whose working **is** the chapter's insight (a probe that halves a rack of gauge blocks, a turntable where a new peg captures one arc of keys), and a built page that has been checked in a headless browser on desktop, phone and dark mode.
+Ask for *"the binary search chapter"*, *"notes on consistent hashing"* or *"a course on how SpaceX rockets work"* and you get a dense, verified chapter in Markdown, a signature figure whose working **is** the chapter's insight (a shuttle that drops each key into its hash tray, a rocket engine you can take apart and fire), and a built page that has been checked in a headless browser on desktop, phone and dark mode.
 
 **Website and live demo:** [skills.akshayjoshi.dev/course-studio](https://skills.akshayjoshi.dev/course-studio/) has both figures running live in the page, and two finished demo chapters: [Hashing](https://skills.akshayjoshi.dev/course-studio/example/dsa/05-hashing.html) from an algorithms course, and [Inside the engine](https://skills.akshayjoshi.dev/course-studio/example/how-rockets-work/03-inside-the-engine.html) from a course on how rockets work, built around SpaceX's Raptor 2 that you can take apart and fire.
 
@@ -35,6 +35,14 @@ Ask for *"the binary search chapter"*, *"notes on consistent hashing"* or *"a co
 | a figure for an existing chapter | a brief, the Anatomy figure, and the rebuilt chapter |
 
 **Any subject.** Software gets code; real machines, the body and the natural world get the real thing drawn as the figure (a rocket engine on its test stand, a four-chamber heart, a ripple tank); business and science get the mechanism behind the numbers. Real-world facts are taken from published sources, not memory. Subjects with no mechanism to show (history narratives, vocabulary) get tables and timelines instead of figures.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/raptor-dark.png">
+    <img src=".github/assets/raptor-light.png" width="560" alt="SpaceX's Raptor 2 engine in a test stand, taken apart into its numbered assemblies: oxygen turbopump, preburners, main chamber, hot-gas manifold, methane turbopump and nozzle, with an Ignite button and a parts legend.">
+  </picture>
+  <br><sub>Fig 1 of <em>Inside the engine</em>: Raptor 2 taken apart. On the website you can hover it apart and press Ignite.</sub>
+</p>
 
 What makes the output trustworthy:
 
@@ -119,13 +127,21 @@ courses/
       chapter.md                source of truth (GFM/MDX-friendly)
       figures/fig-01-hash-sorter/{brief.md, model.mjs, build.mjs, *.html}
     dist/                       built pages: index.html, 05-hashing.html …
+  how-rockets-work/
+    course.json                 a course outside software, with its own accent colour
+    chapters/03-inside-the-engine/
+      chapter.md
+      figures/fig-01-engine-cycle/{brief.md, model.mjs, build.mjs, raptor.mjs, …}
+    dist/
 ```
+
+Both courses ship with the skill as worked examples (`skills/course-studio/examples/courses/`), and they are the demos on the website.
 
 Built pages are self-contained HTML (figures embedded) apart from web fonts. Open them, publish them, or feed `chapter.md` to your own platform: callouts use GitHub's `> [!NOTE]` syntax and figures are a single `::figure <id>` line a remark plugin can map to a component.
 
-### Presets
+### Course colours
 
-The slugs `dsa`, `system-design`, `javascript-deeply` and `low-level-design` get a built-in colour identity and starting syllabus. Any other subject works the same way with a neutral palette, or set `accent`/`tint` (and dark variants) in `course.json`.
+Each course gets one accent colour on its pages and catalog card. Set `accent` and `tint` (and their dark variants) in `course.json`, as the rockets example does; otherwise a neutral palette is used. Four slugs come with colours and a starting syllabus already: `dsa`, `system-design`, `javascript-deeply` and `low-level-design`.
 
 ## The scripts
 
@@ -143,7 +159,7 @@ All in `skills/course-studio/scripts/`; the skill runs them for you.
 
 ```bash
 pip install -r skills/course-studio/requirements.txt && python3 -m playwright install chromium
-tests/smoke.sh        # rebuilds the example course, checks every page, and confirms em dashes are caught
+tests/smoke.sh        # rebuilds both example courses, checks every page, and confirms em dashes are caught
 ```
 
 CI runs the smoke test on every push, validates the plugin manifests and `SKILL.md` frontmatter, and fails if an em dash appears anywhere in the repository (`tools/check_no_em_dash.py`).

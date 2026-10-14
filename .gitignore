@@ -3,7 +3,7 @@ __pycache__/
 .venv/
 venv/
 .DS_Store
-# build output from running the example
+# build output from running the examples
 **/dist/
 **/shots*/
 **/_anatomy/

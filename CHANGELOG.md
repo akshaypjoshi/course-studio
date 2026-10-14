@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- README: the Raptor 2 figure, both example courses in the workspace layout, "Course colours" in place of "Presets", and smoke-test wording for both examples.
+- GitHub description and topics now say "any subject".
+
 ## 0.5.0 (2026-10-14)
 
 - **Second example: How Rockets Work, Ch 3 "Inside the engine".** A course for curious adults with six planned chapters and one written: how SpaceX's Raptor 2 drives its pumps (full-flow staged combustion), with real numbers dated and sourced in `model.mjs`, back-of-envelope checks, and a Hero figure adapted from Anatomy's Raptor 2 example that you can take apart and fire.

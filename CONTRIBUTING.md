@@ -5,7 +5,7 @@ Issues and pull requests are welcome.
 ## Before you open a PR
 
 1. Install the dependencies: `pip install -r skills/course-studio/requirements.txt && python3 -m playwright install chromium`. You also need Node.js 20.10+.
-2. Run `tests/smoke.sh`. It rebuilds the example course, checks every page on desktop and on phone in dark mode, and confirms that em dashes are caught.
+2. Run `tests/smoke.sh`. It rebuilds both example courses, checks every page on desktop and on phone in dark mode, and confirms that em dashes are caught.
 3. If you changed how the skill behaves, add or update a case in `evals/` and a line in `CHANGELOG.md`.
 
 ## Style
