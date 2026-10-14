@@ -2,7 +2,7 @@
   {"query": "Plan a 10-chapter System Design course for backend engineers preparing for senior interviews", "should_trigger": true},
   {"query": "write the binary search chapter for the DSA course", "should_trigger": true},
   {"query": "notes on consistent hashing", "should_trigger": true},
-  {"query": "make me a cheat sheet for graph algorithms — BFS, DFS, Dijkstra, topo sort, union-find", "should_trigger": true},
+  {"query": "make me a cheat sheet for graph algorithms: BFS, DFS, Dijkstra, topo sort, union-find", "should_trigger": true},
   {"query": "Explain the JavaScript event loop visually for the course, with a figure learners can play with", "should_trigger": true},
   {"query": "outline a syllabus for an intro to compilers course, 8 weeks", "should_trigger": true},
   {"query": "interview prep material on LRU cache design for my LLD course", "should_trigger": true},

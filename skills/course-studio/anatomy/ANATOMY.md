@@ -1,4 +1,4 @@
-<!-- Bundled Anatomy engine v1.1.0-23-ge6600ff (e6600ff), MIT, (c) Ryan — https://github.com/wheresryan22/anatomy
+<!-- Bundled Anatomy engine v1.1.0-23-ge6600ff (e6600ff), MIT, (c) Ryan, https://github.com/wheresryan22/anatomy
      Vendored by tools/update-anatomy.sh; edit there, not here. Gallery publishing is not included. -->
 
 > **Inside Course Studio:** every path below (`kit/`, `scripts/`, `references/`, `examples/`) is relative to this

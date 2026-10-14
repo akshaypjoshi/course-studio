@@ -12,7 +12,7 @@ Contents: How to invent one · DSA · System Design · JavaScript, Deeply · Low
 
 1. Write the insight as a *mechanism* sentence: "X happens because Y forces Z." (Binary search: "half the candidates are discarded because one comparison against a sorted midpoint rules out a side.")
 2. List the moving parts of the mechanism: the thing that changes, the thing that decides, the thing that is counted.
-3. Find a workshop, lab, post-office, railway, kitchen or factory machine that has those same three parts. Prefer machines with **rails, carriages, gates, dials, springs, levers, trays, chutes** — they move legibly in isometric.
+3. Find a workshop, lab, post-office, railway, kitchen or factory machine that has those same three parts. Prefer machines with **rails, carriages, gates, dials, springs, levers, trays, chutes**: they move legibly in isometric.
 4. Check one-to-one: every concept part has a physical part and every physical part means something. Extra parts are structure (base, frame, screws), not new meaning.
 5. Pick the one **lit** part: the thing whose motion *is* the insight.
 6. Pick the **readout**: the number the chapter keeps talking about (comparisons, latency, load, depth).
@@ -126,5 +126,5 @@ Reject an object when: the reader must be told what it is (too abstract), it nee
 ## Reuse across a course
 
 - Keep **one visual family per course** so figures feel like a set: DSA lives on a workbench of rails, gauges and trays; SD in a utility room of pipes, valves and conveyors; JS in a mailroom/office; LLD in a model workshop of small machines. Anatomy's "consistent scale across a set" applies.
-- A later chapter may **extend an earlier figure** (the hash tray sorter gains a second, longer tray rail for resizing) — reuse its model module and parts; it reads as progression.
+- A later chapter may **extend an earlier figure** (the hash tray sorter gains a second, longer tray rail for resizing). Reuse its model module and parts; it reads as progression.
 - A notes page or cheat sheet **reuses** chapter figures by id instead of drawing new ones.

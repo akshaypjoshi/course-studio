@@ -6,7 +6,7 @@ Contents: 1. Inputs · 2. From outcomes to chapters · 3. course.json · 4. Star
 
 ## 1. Inputs
 
-Read what the user gave and fill the rest with sensible defaults stated in one line. Ask only when a wrong guess wastes the whole plan (e.g. "System Design" for interview prep vs for a team building real systems — the chapter list differs a lot).
+Read what the user gave and fill the rest with sensible defaults stated in one line. Ask only when a wrong guess wastes the whole plan (e.g. "System Design" for interview prep vs for a team building real systems: the chapter list differs a lot).
 
 | Field | Default when not given |
 |---|---|
@@ -22,7 +22,7 @@ Search before writing when the course depends on the current landscape (intervie
 
 1. **Outcomes first**: 5–8 things the learner can *do* at the end ("design a rate limiter and defend its trade-offs"). Every chapter must serve at least one.
 2. **Prerequisites**: what you assume; link to the course that teaches it if it's in the same catalog.
-3. **Chapters in dependency order**: nothing used before it's taught. Spiral where useful (a chapter can revisit an earlier idea at a deeper level — say so in its summary).
+3. **Chapters in dependency order**: nothing used before it's taught. Spiral where useful (a chapter can revisit an earlier idea at a deeper level; say so in its summary).
 4. **Size each chapter** to one sitting (25–45 min reading). A chapter with two "aha"s is two chapters.
 5. **Plan one signature figure per chapter**: the concept it makes obvious and a starting object from `object-atlas.md`. Keep one visual family per course.
 6. **Topics**: 3–8 tags per chapter (they show on the syllabus).
@@ -70,19 +70,19 @@ courses/
     dist/                   built pages: index.html (course page), 04-binary-search.html, …
 ```
 
-New course colours: add `accent`/`tint` (and dark variants) — pick a hue distinct from the existing four, with the tint at ~12% of the accent on the paper colour.
+New course colours: add `accent`/`tint` (and dark variants). Pick a hue distinct from the existing four, with the tint at ~12% of the accent on the paper colour.
 
 ## 4. Starting syllabi for the preset courses
 
 The four built-in presets (these slugs get their colours automatically). Starting points matched to the card counts. Adapt to what the user wants; they're not fixed.
 
-**DSA (12 chapters, 40 hrs)** — 1 Complexity & how to think about cost · 2 Arrays, strings & prefix sums · 3 Two pointers & sliding window · 4 Binary search (incl. on the answer) · 5 Hashing · 6 Stacks, queues & monotonic stacks · 7 Linked lists · 8 Recursion & backtracking · 9 Trees & BSTs · 10 Heaps & greedy · 11 Graphs (BFS, DFS, shortest paths, topo sort, union-find) · 12 Dynamic programming.
+**DSA (12 chapters, 40 hrs)**: 1 Complexity & how to think about cost · 2 Arrays, strings & prefix sums · 3 Two pointers & sliding window · 4 Binary search (incl. on the answer) · 5 Hashing · 6 Stacks, queues & monotonic stacks · 7 Linked lists · 8 Recursion & backtracking · 9 Trees & BSTs · 10 Heaps & greedy · 11 Graphs (BFS, DFS, shortest paths, topo sort, union-find) · 12 Dynamic programming.
 
-**System Design (5 chapters, 30 hrs)** — 1 Foundations: requirements, estimation, latency numbers, the interview framework · 2 Scaling reads & writes: load balancing, caching, CDNs, replication, sharding, consistent hashing · 3 Data: SQL vs NoSQL, indexes, B-trees & LSM, consistency, quorums, transactions · 4 Async & reliability: queues, logs, idempotency, rate limiting, circuit breakers, back-pressure · 5 Case studies: URL shortener, feed, chat, rate limiter service, payment flow.
+**System Design (5 chapters, 30 hrs)**: 1 Foundations: requirements, estimation, latency numbers, the interview framework · 2 Scaling reads & writes: load balancing, caching, CDNs, replication, sharding, consistent hashing · 3 Data: SQL vs NoSQL, indexes, B-trees & LSM, consistency, quorums, transactions · 4 Async & reliability: queues, logs, idempotency, rate limiting, circuit breakers, back-pressure · 5 Case studies: URL shortener, feed, chat, rate limiter service, payment flow.
 
-**JavaScript, Deeply (4 chapters, 18 hrs)** — 1 Execution: contexts, hoisting, TDZ, scope chain, closures, `this` · 2 Objects: prototypes, classes, references vs values, property descriptors, hidden classes · 3 Async: event loop, tasks vs microtasks, promises, async/await, generators · 4 Memory & performance: garbage collection, leaks, debounce/throttle, modules & bundling.
+**JavaScript, Deeply (4 chapters, 18 hrs)**: 1 Execution: contexts, hoisting, TDZ, scope chain, closures, `this` · 2 Objects: prototypes, classes, references vs values, property descriptors, hidden classes · 3 Async: event loop, tasks vs microtasks, promises, async/await, generators · 4 Memory & performance: garbage collection, leaks, debounce/throttle, modules & bundling.
 
-**Low-Level Design (3 chapters, 22 hrs)** — 1 Object modelling & SOLID: entities, responsibilities, relationships, dependency inversion · 2 Design patterns that come up in machine-coding rounds: strategy, observer, factory, builder, state, command, decorator, adapter, chain of responsibility, singleton (with when *not* to) · 3 Machine-coding walkthroughs: parking lot, elevator, LRU cache, rate limiter, splitwise, with concurrency.
+**Low-Level Design (3 chapters, 22 hrs)**: 1 Object modelling & SOLID: entities, responsibilities, relationships, dependency inversion · 2 Design patterns that come up in machine-coding rounds: strategy, observer, factory, builder, state, command, decorator, adapter, chain of responsibility, singleton (with when *not* to) · 3 Machine-coding walkthroughs: parking lot, elevator, LRU cache, rate limiter, splitwise, with concurrency.
 
 ## 5. Delivering the plan
 

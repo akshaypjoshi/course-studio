@@ -1,19 +1,25 @@
 # Changelog
 
-## 0.3.0 — 2026-10-14
+## 0.3.1 (2026-10-14)
+
+- Documentation follows the house style: no em dashes in the README, CHANGELOG, `SKILL.md`, references, templates or evals. CI now fails if one appears anywhere in the repository.
+- README: describes the bundled Anatomy engine, the em dash checks, the `requirements.txt` path for plugin installs, and the repository layout.
+- New `CONTRIBUTING.md`: how to test, the style rules, how to update the bundled Anatomy engine, and how to cut a release.
+
+## 0.3.0 (2026-10-14)
 
 - **No em dashes in generated content.** New writing rule covering chapters, notes, cheat sheets, `course.json` text, briefs and figure card text.
 - `build_chapter.py` warns with line numbers (ignoring code); `check_pages.py` reports any em dash visible on a page or inside a figure as a PROBLEM.
 - Markdown no longer converts `--`/`---` into dashes, and the pipeline itself no longer inserts any.
 
-## 0.2.0 — 2026-10-14
+## 0.2.0 (2026-10-14)
 
 - **Anatomy is bundled.** The figure engine (kit, scripts, references, examples) now ships inside the skill at `skills/course-studio/anatomy/`, pinned to upstream `e6600ff` (v1.1.0+). Installing `akshaypjoshi/course-studio` is all you need.
 - Its guide is `anatomy/ANATOMY.md` (renamed from `SKILL.md` so it isn't installed as a second skill). Gallery publishing and the upstream test suite are left out.
 - `workspace.py init` uses the bundled copy; `--anatomy <path>` or `ANATOMY_SKILL` still override it.
 - `tools/update-anatomy.sh` re-vendors from upstream; `THIRD_PARTY_NOTICES.md` carries the MIT notice.
 
-## 0.1.0 — 2026-10-14
+## 0.1.0 (2026-10-14)
 
 First public release.
 

@@ -32,6 +32,7 @@ jobs:
           python -m json.tool evals/trigger-evals.json > /dev/null
           test -f skills/course-studio/anatomy/LICENSE && test -f skills/course-studio/anatomy/kit/iso-kit.mjs
           if [ -f skills/course-studio/anatomy/SKILL.md ]; then echo "bundled Anatomy must not ship a SKILL.md"; exit 1; fi
+          python tools/check_no_em_dash.py
           python - <<'PY'
           import re, yaml
           src = open("skills/course-studio/SKILL.md").read()

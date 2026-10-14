@@ -1,8 +1,8 @@
 <h1 align="center">Course Studio</h1>
 
 <p align="center">
-  An agent skill that plans and writes technical courses — syllabi, chapters, notes and cheat sheets —<br>
-  with every diagram built as an interactive isometric figure by <a href="https://github.com/wheresryan22/anatomy">Anatomy</a>.
+  An agent skill that plans and writes technical courses (syllabi, chapters, notes and cheat sheets),<br>
+  with every diagram built as an interactive isometric figure by the bundled <a href="https://github.com/wheresryan22/anatomy">Anatomy</a> engine.
 </p>
 
 <p align="center">
@@ -28,13 +28,14 @@ Ask for *"the binary search chapter"* or *"notes on consistent hashing"* and you
 | a course, syllabus, curriculum | `course.json` (outcomes, prerequisites, chapters in dependency order, one planned figure each) + a course page and catalog |
 | a chapter or lesson on X | `chapter.md` following a fixed teaching arc + its Anatomy figure + a built page |
 | notes, an explainer, interview prep | `notes.md`, reusing a chapter figure where one fits |
-| a cheat sheet / revision notes | `cheatsheet.md` — tables, patterns, one-liners, no new figures |
+| a cheat sheet / revision notes | `cheatsheet.md`: tables, patterns, one-liners, no new figures |
 | a figure for an existing chapter | a brief, the Anatomy figure, and the rebuilt chapter |
 
 What makes the output trustworthy:
 
-- **Every code block is run**, every number verified, and the figure is driven by the same `model.mjs` as the chapter's worked example — so text, readout and caption agree.
-- **Pages are checked**, not just generated: `check_pages.py` flags JS errors, clipped or unbuilt figures, broken links, sideways scroll and empty sections, and saves screenshots for review.
+- **Every code block is run**, every number verified, and the figure is driven by the same `model.mjs` as the chapter's worked example, so text, readout and caption agree.
+- **Pages are checked**, not just generated: `check_pages.py` flags JS errors, clipped or unbuilt figures, broken links, sideways scroll, empty sections and em dashes, and saves screenshots for review.
+- **A consistent house style**: dense prose with no filler and no em dashes, in the text, in `course.json` and on the figure cards. `build_chapter.py` warns with line numbers and the page check catches anything that slips through.
 - **An object atlas** gives starting machines for ~90 concepts across DSA, System Design, JavaScript and Low-Level Design, plus a method for inventing one for anything else.
 
 <p align="center">
@@ -74,7 +75,11 @@ Inside Claude Code:
 | Node.js 20.10+ | building Anatomy figures |
 
 ```bash
-pip install -r ~/.claude/skills/course-studio/requirements.txt   # path depends on how you installed
+# installed with npx -g:
+pip install -r ~/.claude/skills/course-studio/requirements.txt
+# installed as a plugin:
+pip install -r ~/.claude/plugins/marketplaces/course-studio/skills/course-studio/requirements.txt
+
 python3 -m playwright install chromium
 ```
 
@@ -86,7 +91,7 @@ Just ask, in any project:
 
 ```
 Plan a System Design course, about 30 hours, for engineers preparing for senior interviews.
-Write chapter 4 of the DSA course — binary search.
+Write chapter 4 of the DSA course: binary search.
 Notes on the JavaScript event loop, with a figure.
 Cheat sheet for graph algorithms.
 ```
@@ -105,7 +110,7 @@ courses/
     dist/                       built pages: index.html, 05-hashing.html …
 ```
 
-Built pages are self-contained HTML (figures embedded) apart from web fonts — open them, publish them, or feed `chapter.md` to your own platform: callouts use GitHub's `> [!NOTE]` syntax and figures are a single `::figure <id>` line a remark plugin can map to a component.
+Built pages are self-contained HTML (figures embedded) apart from web fonts. Open them, publish them, or feed `chapter.md` to your own platform: callouts use GitHub's `> [!NOTE]` syntax and figures are a single `::figure <id>` line a remark plugin can map to a component.
 
 ### Presets
 
@@ -117,9 +122,9 @@ All in `skills/course-studio/scripts/`; the skill runs them for you.
 
 | Script | Does |
 |---|---|
-| `workspace.py init <courses>` | vendors Anatomy's kit into `<courses>/_anatomy/` |
+| `workspace.py init <courses>` | copies the bundled Anatomy engine into `<courses>/_anatomy/` (`--anatomy <path>` or `ANATOMY_SKILL` to use another copy) |
 | `workspace.py course \| chapter \| figure …` | scaffolds `course.json`, `chapter.md` + briefs, a figure folder |
-| `build_chapter.py <chapter.md>` | chapter / notes / cheat-sheet page with embedded figures |
+| `build_chapter.py <chapter.md>` | chapter / notes / cheat-sheet page with embedded figures; warns on em dashes |
 | `build_course.py <course-dir>` / `<courses> --catalog` | course page with syllabus / catalog grid |
 | `check_pages.py <dist> [--mobile] [--dark]` | headless checks + screenshots; exits 1 on any problem |
 
@@ -127,18 +132,30 @@ All in `skills/course-studio/scripts/`; the skill runs them for you.
 
 ```bash
 pip install -r skills/course-studio/requirements.txt && python3 -m playwright install chromium
-tests/smoke.sh                       # rebuilds the example course and checks every page
+tests/smoke.sh        # rebuilds the example course, checks every page, and confirms em dashes are caught
 ```
 
-CI runs the same smoke test on every push.
+CI runs the smoke test on every push, validates the plugin manifests and `SKILL.md` frontmatter, and fails if an em dash appears anywhere in the repository (`tools/check_no_em_dash.py`).
 
-The bundled Anatomy engine lives in `skills/course-studio/anatomy/` (pinned version in its `VERSION` file). To update it from upstream, run `tools/update-anatomy.sh [git-ref]`, then the smoke test. `evals/` holds trigger evals (prompts that should and shouldn't load the skill) and task evals with expectations, in the format used by Anthropic's `skill-creator`.
+```
+.claude-plugin/            plugin.json + marketplace.json (the /plugin install path)
+skills/course-studio/      the skill itself (what npx skills add installs)
+  SKILL.md                 entry point: scope table, workflows, quality bar
+  references/              course design, writing rules, figures, object atlas
+  scripts/                 workspace, build_chapter, build_course, check_pages
+  assets/                  page CSS and templates (course.json, brief.md, build.mjs)
+  examples/courses/dsa/    a finished chapter with its figure
+  anatomy/                 the bundled Anatomy engine (pinned in VERSION)
+evals/                     trigger evals and task evals (skill-creator format)
+tests/smoke.sh             end-to-end smoke test
+tools/update-anatomy.sh    re-vendor Anatomy from upstream
+```
 
-Repository layout: `skills/course-studio/` is the skill itself (what `npx skills add` installs); `.claude-plugin/` makes the repo a Claude Code plugin marketplace; `tools/` holds maintenance scripts.
+To update the bundled Anatomy engine, run `tools/update-anatomy.sh [git-ref]`, then `tests/smoke.sh`. See [CONTRIBUTING.md](CONTRIBUTING.md) for the rest, and [CHANGELOG.md](CHANGELOG.md) for what changed in each version.
 
 ## Credits
 
-Figures are drawn with [Anatomy](https://github.com/wheresryan22/anatomy) by Ryan ([@wheresryan22](https://github.com/wheresryan22)), bundled under its MIT license — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The bundled copy leaves out Anatomy's community-gallery publisher and its test suite; for standalone isometric figures outside courses, install Anatomy itself.
+Figures are drawn with [Anatomy](https://github.com/wheresryan22/anatomy) by Ryan ([@wheresryan22](https://github.com/wheresryan22)), bundled under its MIT license (see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)). The bundled copy leaves out Anatomy's community-gallery publisher and its test suite; for standalone isometric figures outside courses, install Anatomy itself.
 
 ## License
 

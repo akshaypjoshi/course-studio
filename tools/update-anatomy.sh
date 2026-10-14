@@ -32,7 +32,7 @@ s = open(src).read()
 s = re.sub(r"\A---\n.*?\n---\n", "", s, flags=re.S)                     # no frontmatter: not a separate skill
 s = "\n".join(l for l in s.splitlines() if "references/publish.md" not in l) + "\n"
 s = s.replace("This skill makes figures", "Anatomy makes figures").replace("ship with the skill", "ship in this folder")
-head = (f"<!-- Bundled Anatomy engine {ver} ({sha[:7]}), MIT, (c) Ryan — https://github.com/wheresryan22/anatomy\n"
+head = (f"<!-- Bundled Anatomy engine {ver} ({sha[:7]}), MIT, (c) Ryan, https://github.com/wheresryan22/anatomy\n"
         f"     Vendored by tools/update-anatomy.sh; edit there, not here. Gallery publishing is not included. -->\n\n"
         "> **Inside Course Studio:** every path below (`kit/`, `scripts/`, `references/`, `examples/`) is relative to this\n"
         "> `anatomy/` folder. Course figures import the copy vendored into the workspace (`<courses>/_anatomy/`) by\n"

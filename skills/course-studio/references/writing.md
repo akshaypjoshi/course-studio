@@ -17,29 +17,29 @@ Contents: 1. Kinds of output · 2. The chapter arc · 3. Per-course must-haves �
 
 Outline before writing. For every section write one sentence: *what the learner can do after it*. If two sections have the same sentence, merge them.
 
-1. **Hook / the one idea** — the insight in one or two sentences, before any definition. A concrete situation where it matters.
-2. **Watch it work** — the signature figure, placed where the idea first needs to be *seen*. The prose before it says what to watch; the prose after it names what they just saw.
-3. **Why it works** — the invariant, proof sketch, or the rule from the spec. This is what separates the course from tutorials.
-4. **Build it** — code (DSA, JS, LLD) or the design (SD), with the decisions explained line by line where they're non-obvious.
-5. **Variants** — the 2–3 shapes the idea takes in practice and interviews.
-6. **Cost & trade-offs** — complexity table (DSA), numbers and trade-offs (SD), performance/semantics (JS), extension cost (LLD).
-7. **Pitfalls** — specific bugs: the line, the input that breaks it, the symptom.
-8. **Check yourself** — 3–4 transfer questions with answers.
-9. **Recap** — 3–5 bullets a learner could revise from.
+1. **Hook / the one idea**: the insight in one or two sentences, before any definition. A concrete situation where it matters.
+2. **Watch it work**: the signature figure, placed where the idea first needs to be *seen*. The prose before it says what to watch; the prose after it names what they just saw.
+3. **Why it works**: the invariant, proof sketch, or the rule from the spec. This is what separates the course from tutorials.
+4. **Build it**: code (DSA, JS, LLD) or the design (SD), with the decisions explained line by line where they're non-obvious.
+5. **Variants**: the 2–3 shapes the idea takes in practice and interviews.
+6. **Cost & trade-offs**: complexity table (DSA), numbers and trade-offs (SD), performance/semantics (JS), extension cost (LLD).
+7. **Pitfalls**: specific bugs, each with the line, the input that breaks it and the symptom.
+8. **Check yourself**: 3–4 transfer questions with answers.
+9. **Recap**: 3–5 bullets a learner could revise from.
 
 The figure's idle tour, readout and caption must show exactly the moments the text refers to. Write the paragraph around `::figure` first, then the brief from it.
 
 ## 3. Per-course must-haves
 
-**DSA** — invariant in one sentence · complexity table (best/avg/worst, space) · code in the course languages (default: Python first, then the others in tabs or a short "in C++ / Java / Go" block for the lines that differ) · edge cases (empty, one element, duplicates, overflow) · an "In the interview" callout naming the problem patterns this unlocks (with 3–5 classic problem names).
+**DSA**: invariant in one sentence · complexity table (best/avg/worst, space) · code in the course languages (default: Python first, then the others in tabs or a short "in C++ / Java / Go" block for the lines that differ) · edge cases (empty, one element, duplicates, overflow) · an "In the interview" callout naming the problem patterns this unlocks (with 3–5 classic problem names).
 
-**System Design** — functional + non-functional requirements · back-of-envelope numbers shown as arithmetic · the architecture explained component by component · a `[!TRADEOFF]` for every design decision · failure modes and what degrades · "what I'd say in the interview" callout · real-world systems that do this (with what they actually do, verified).
+**System Design**: functional + non-functional requirements · back-of-envelope numbers shown as arithmetic · the architecture explained component by component · a `[!TRADEOFF]` for every design decision · failure modes and what degrades · "what I'd say in the interview" callout · real-world systems that do this (with what they actually do, verified).
 
-**JavaScript, Deeply** — "predict the output" `[!CHECK]` *before* the explanation · the spec-level rule in plain words (cite the ECMAScript concept name, e.g. "Job Queue", "Environment Record") · how engines actually behave where it differs from the mental model · a pitfall with the real-code bug it causes.
+**JavaScript, Deeply**: "predict the output" `[!CHECK]` *before* the explanation · the spec-level rule in plain words (cite the ECMAScript concept name, e.g. "Job Queue", "Environment Record") · how engines actually behave where it differs from the mental model · a pitfall with the real-code bug it causes.
 
-**Low-Level Design** — requirements and assumptions · entities and responsibilities table · class relationships · the core methods in code · the pattern(s) used and why · "extending it" section: a new requirement and what changes · concurrency notes where it matters.
+**Low-Level Design**: requirements and assumptions · entities and responsibilities table · class relationships · the core methods in code · the pattern(s) used and why · "extending it" section: a new requirement and what changes · concurrency notes where it matters.
 
-**Any other subject** — same arc; replace the must-haves with that field's equivalents (the core rule, the worked example, the common mistake, the transfer question).
+**Any other subject**: same arc; replace the must-haves with that field's equivalents (the core rule, the worked example, the common mistake, the transfer question).
 
 ## 4. Writing rules
 
@@ -48,10 +48,10 @@ The figure's idle tour, readout and caption must show exactly the moments the te
 - **Explain why each step exists.** "lo = mid + 1 because a[mid] is already too small", not "update lo".
 - **Name pitfalls precisely**: the line, the input, the symptom.
 - **Density over padding.** No "In this chapter we will…", "Let's dive in", restated headings, or motivational filler. The audience is busy engineers and serious students; respect their time.
-- **No em dashes (—) anywhere in generated content**: chapters, notes, cheat sheets, `course.json` text, figure briefs and card text (title, hint, readout, keys, caption). Use a comma, a colon, parentheses or a new sentence instead. Don't fake one with ` - ` or `--` either. En dashes in number ranges (`25–45 min`) are fine. `build_chapter.py` warns with line numbers and `check_pages.py` reports any that reach a page.
-- **One idea per paragraph**, 2–5 sentences. Bold only the phrase a skimmer must not miss — at most one per paragraph.
+- **No em dashes (Unicode U+2014) anywhere in generated content**: chapters, notes, cheat sheets, `course.json` text, figure briefs and card text (title, hint, readout, keys, caption). Use a comma, a colon, parentheses or a new sentence instead. Don't fake one with ` - ` or `--` either. En dashes in number ranges (`25–45 min`) are fine. `build_chapter.py` warns with line numbers and `check_pages.py` reports any that reach a page.
+- **One idea per paragraph**, 2–5 sentences. Bold only the phrase a skimmer must not miss, at most one per paragraph.
 - **Correctness is non-negotiable.** Run every code block (write it to a scratch file and execute it with a few inputs). Verify complexity claims, numbers and real-world claims; search for anything about current systems or versions.
-- **Point at the figure precisely.** "Watch the probe drop between blocks 4 and 7" — not "see the diagram".
+- **Point at the figure precisely.** "Watch the probe drop between blocks 4 and 7", not "see the diagram".
 - **Consistent vocabulary** across the course: pick one term (e.g. "invariant", "search space") and keep it. Record course-wide terms in `course.json` → `"glossary"` when they recur.
 - **Callouts are seasoning**: at most one per ~3 paragraphs.
 - **Self-checks test transfer**, not recall: a variant, a "what breaks if…", a prediction.
@@ -88,7 +88,7 @@ Prose…
 > - 3–5 bullets
 ```
 
-- `::figure <id> | lead-in` must be on its own line. The figure folder is `figures/<id>/` next to `chapter.md`; if it isn't there, the builder looks in the other chapters of the course (so notes can reuse a chapter's figure). The lead-in is optional — the Anatomy card already has a title and caption.
+- `::figure <id> | lead-in` must be on its own line. The figure folder is `figures/<id>/` next to `chapter.md`; if it isn't there, the builder looks in the other chapters of the course (so notes can reuse a chapter's figure). The lead-in is optional: the Anatomy card already has a title and caption.
 - A figure that isn't built yet renders as a dashed "pending" box showing the first line of its `brief.md`, so the chapter can be reviewed before figures exist.
 - Fenced code gets syntax highlighting (light and dark). Tables, footnote-free Markdown, and inline HTML work.
 - Add `{.nonum}` after a heading (`## Appendix {.nonum}`) to leave it unnumbered.
