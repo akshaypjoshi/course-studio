@@ -3,7 +3,7 @@
   "version": "0.3.1",
   "description": "Plan and write technical courses, chapters, notes and cheat sheets, with every diagram built as an interactive isometric figure by the Anatomy skill.",
   "author": { "name": "Akshay Joshi", "url": "https://github.com/akshaypjoshi" },
-  "homepage": "https://github.com/akshaypjoshi/course-studio",
+  "homepage": "https://skills.akshayjoshi.dev/course-studio/",
   "repository": "https://github.com/akshaypjoshi/course-studio",
   "license": "MIT",
   "keywords": ["course", "curriculum", "education", "notes", "cheat-sheet", "anatomy", "isometric", "diagrams", "dsa", "system-design"]

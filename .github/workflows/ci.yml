@@ -47,6 +47,9 @@ jobs:
           SHOTS: ${{ runner.temp }}/shots
         run: tests/smoke.sh
 
+      - name: Build the website (landing page + live demo)
+        run: python site/build.py "$RUNNER_TEMP/site"
+
       - name: Upload screenshots
         if: always()
         uses: actions/upload-artifact@v4

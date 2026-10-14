@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Website at [skills.akshayjoshi.dev/course-studio](https://skills.akshayjoshi.dev/course-studio/): a landing page with the hashing figure running live, and the demo course and chapter built by the skill's own scripts. Source in `site/`; CI builds it on every push.
+
 ## 0.3.1 (2026-10-14)
 
 - Documentation follows the house style: no em dashes in the README, CHANGELOG, `SKILL.md`, references, templates or evals. CI now fails if one appears anywhere in the repository.

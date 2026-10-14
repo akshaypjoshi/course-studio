@@ -10,6 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></a>
   <a href="#install"><img src="https://img.shields.io/badge/install-npx_skills_add-1b1b19" alt="Install with npx"></a>
   <a href="#install"><img src="https://img.shields.io/badge/Claude_Code-plugin-D97757" alt="Claude Code plugin"></a>
+  <a href="https://skills.akshayjoshi.dev/course-studio/"><img src="https://img.shields.io/badge/website-skills.akshayjoshi.dev-1b1b19" alt="Website"></a>
 </p>
 
 <p align="center">
@@ -20,6 +21,8 @@
 </p>
 
 Ask for *"the binary search chapter"* or *"notes on consistent hashing"* and you get a dense, verified chapter in Markdown, a signature figure whose working **is** the chapter's insight (a probe that halves a rack of gauge blocks, a turntable where a new peg captures one arc of keys), and a built page that has been checked in a headless browser on desktop, phone and dark mode.
+
+**Website and live demo:** [skills.akshayjoshi.dev/course-studio](https://skills.akshayjoshi.dev/course-studio/) has the interactive figure running in the page, and the finished [Hashing chapter](https://skills.akshayjoshi.dev/course-studio/example/05-hashing.html).
 
 ## What it does
 
@@ -147,9 +150,12 @@ skills/course-studio/      the skill itself (what npx skills add installs)
   examples/courses/dsa/    a finished chapter with its figure
   anatomy/                 the bundled Anatomy engine (pinned in VERSION)
 evals/                     trigger evals and task evals (skill-creator format)
+site/                      the website: landing page + build.py (builds the live demo)
 tests/smoke.sh             end-to-end smoke test
 tools/update-anatomy.sh    re-vendor Anatomy from upstream
 ```
+
+The website is published from the [akshaypjoshi/skills](https://github.com/akshaypjoshi/skills) hub, which runs `site/build.py` and deploys to GitHub Pages. Preview it locally with `python3 site/build.py /tmp/site && python3 -m http.server -d /tmp/site`.
 
 To update the bundled Anatomy engine, run `tools/update-anatomy.sh [git-ref]`, then `tests/smoke.sh`. See [CONTRIBUTING.md](CONTRIBUTING.md) for the rest, and [CHANGELOG.md](CHANGELOG.md) for what changed in each version.
 
