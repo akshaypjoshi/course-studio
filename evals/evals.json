@@ -1,0 +1,44 @@
+{
+  "skill_name": "course-studio",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write chapter 4 (Binary Search) of the DSA course in ./courses. Keep it to one signature figure.",
+      "expected_output": "courses/dsa/chapters/04-binary-search/chapter.md following the chapter arc (hook, figure, invariant, code, variants, complexity table, pitfalls, 3-4 transfer checks, recap); figures/fig-01-*/ with brief.md, model.mjs and an Anatomy build.mjs producing dark and light HTML; dist/04-binary-search.html built; check_pages.py passes on desktop and mobile+dark; numbers in text, readout and caption agree.",
+      "files": ["examples/courses/dsa/course.json"],
+      "expectations": [
+        "chapter.md has front matter with title, dek, chapter: 4, minutes, outcomes",
+        "Exactly one ::figure directive, placed in the 'watch it work' part of the arc",
+        "brief.md fills every section (idea, truth, object, interaction, card text)",
+        "Every code block in the chapter was executed during the session",
+        "A complexity table and an [!INTERVIEW] callout with 3-5 named problems are present",
+        "check_pages.py was run and its only PROBLEM lines, if any, are deliberately pending figures"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Plan a 'Computer Networks for Developers' course: about 20 hours, intermediate, for web developers.",
+      "expected_output": "courses/computer-networks/course.json (or similar slug) with 5-8 outcomes, prerequisites, chapters in dependency order sized to ~20 hours, each with summary, outcomes, topics and one planned figure (concept + object); price null; course page and catalog built; the syllabus is shown and chapter 1 is offered, not written.",
+      "files": [],
+      "expectations": [
+        "price is null (not invented)",
+        "every chapter has exactly one planned figure with a concept and a physical object",
+        "chapter minutes sum to roughly the stated hours",
+        "build_course.py was run and the syllabus page exists",
+        "no chapter.md was written without being asked"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Make a one-page cheat sheet on hashing for revision, using the existing DSA course.",
+      "expected_output": "A cheatsheet.md (kind: cheatsheet) under the hashing chapter or notes/, made of tables, patterns and one-liners, no new figures, linking the chapter page; built with build_chapter.py and passing check_pages.py.",
+      "files": ["examples/courses/dsa/"],
+      "expectations": [
+        "front matter kind is cheatsheet",
+        "no new figure folders were created",
+        "no prose paragraph longer than two sentences",
+        "complexity numbers match the hashing chapter"
+      ]
+    }
+  ]
+}

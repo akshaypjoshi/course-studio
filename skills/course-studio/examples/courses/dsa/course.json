@@ -1,0 +1,112 @@
+{
+  "slug": "dsa",
+  "code": "DSA",
+  "title": "Data Structures & Algorithms",
+  "tagline": "From arrays to DP. Learn it visually, then prove it with practice.",
+  "level": "Beginner → Advanced",
+  "hours": 40,
+  "languages": [
+    "C++",
+    "Python",
+    "JavaScript",
+    "Go"
+  ],
+  "status": "available",
+  "price": 3499,
+  "currency": "INR",
+  "order": 1,
+  "audience": "Working engineers and final-year students preparing for product-company interviews",
+  "prerequisites": [
+    "Comfortable writing loops and functions in one of C++, Python, JavaScript or Go"
+  ],
+  "outcomes": [
+    "Pick the right data structure for a problem and defend its cost",
+    "State the invariant behind an algorithm and use it to avoid off-by-one bugs",
+    "Recognise the classic interview patterns and code them cleanly under time pressure"
+  ],
+  "glossary": {
+    "invariant": "a statement true before and after every loop iteration",
+    "load factor": "α = n / m, entries stored divided by slots (buckets) available"
+  },
+  "chapters": [
+    {
+      "n": 4,
+      "slug": "binary-search",
+      "title": "Binary Search",
+      "summary": "One comparison against a sorted midpoint discards half the candidates.",
+      "minutes": 35,
+      "outcomes": [
+        "State the invariant and use it to avoid off-by-one bugs"
+      ],
+      "topics": [
+        "invariant",
+        "lower bound",
+        "search on answer"
+      ],
+      "figures": [
+        {
+          "id": "fig-01-gauge-rack",
+          "concept": "each probe halves the span",
+          "object": "rack of sorted gauge blocks with two sliding stops and a drop probe",
+          "size": "Figure"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "n": 5,
+      "slug": "hashing",
+      "title": "Hashing",
+      "summary": "A hash function turns a key into a slot number, so lookup is one jump, until collisions pile up.",
+      "minutes": 40,
+      "outcomes": [
+        "Explain why a hash map lookup is O(1) on average and what the average assumes",
+        "Implement separate chaining and linear probing, including deletion with tombstones",
+        "Use the load factor to decide when to resize, and show why doubling is amortised O(1)",
+        "Recognise the inputs that make a hash map O(n) and what languages do about it"
+      ],
+      "topics": [
+        "hash function",
+        "chaining",
+        "open addressing",
+        "load factor",
+        "resizing",
+        "worst case"
+      ],
+      "figures": [
+        {
+          "id": "fig-01-hash-sorter",
+          "concept": "the dial turns a key straight into a tray number; colliding keys stack in one tray, and patterned keys stack in one tray only",
+          "object": "gantry tray sorter: hash dial, shuttle on an overhead rail, eight trays where colliding keys stack",
+          "size": "Figure"
+        }
+      ],
+      "status": "drafted"
+    },
+    {
+      "n": 6,
+      "slug": "stacks-queues",
+      "title": "Stacks, queues & monotonic stacks",
+      "summary": "Only one end is reachable, and that restriction is what makes them fast and useful.",
+      "minutes": 40,
+      "outcomes": [
+        "Use a monotonic stack to answer next-greater queries in O(n)"
+      ],
+      "topics": [
+        "stack",
+        "queue",
+        "deque",
+        "monotonic stack"
+      ],
+      "figures": [
+        {
+          "id": "fig-01-plate-dispenser",
+          "concept": "only the top plate is reachable",
+          "object": "spring-loaded cafeteria plate dispenser",
+          "size": "Figure"
+        }
+      ],
+      "status": "planned"
+    }
+  ]
+}

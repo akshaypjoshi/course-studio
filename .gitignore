@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+# build output from running the example
+**/dist/
+**/shots*/
+**/_anatomy/
+skills/course-studio/examples/**/fig-*.html

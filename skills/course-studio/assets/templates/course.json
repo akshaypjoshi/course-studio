@@ -1,0 +1,31 @@
+{
+  "slug": "",
+  "code": "",
+  "title": "",
+  "tagline": "",
+  "level": "Intermediate",
+  "hours": 0,
+  "languages": [],
+  "status": "coming_soon",
+  "price": null,
+  "currency": "USD",
+  "order": 1,
+  "audience": "",
+  "prerequisites": [],
+  "outcomes": [],
+  "chapters": [
+    {
+      "n": 1,
+      "slug": "",
+      "title": "",
+      "summary": "",
+      "minutes": 30,
+      "outcomes": [],
+      "topics": [],
+      "figures": [
+        { "id": "fig-01-", "concept": "", "object": "", "size": "Figure" }
+      ],
+      "status": "planned"
+    }
+  ]
+}

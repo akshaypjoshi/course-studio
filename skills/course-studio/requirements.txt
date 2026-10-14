@@ -1,0 +1,6 @@
+# Page builders (build_chapter.py, build_course.py)
+markdown>=3.4
+pyyaml>=6.0
+pygments>=2.15
+# Headless page checks (check_pages.py); then run: playwright install chromium
+playwright>=1.40

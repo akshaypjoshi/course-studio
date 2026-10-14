@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate manifests and frontmatter
+        run: |
+          python -m json.tool .claude-plugin/plugin.json > /dev/null
+          python -m json.tool .claude-plugin/marketplace.json > /dev/null
+          python -m json.tool evals/evals.json > /dev/null
+          python -m json.tool evals/trigger-evals.json > /dev/null
+          python - <<'PY'
+          import re, yaml
+          src = open("skills/course-studio/SKILL.md").read()
+          fm = yaml.safe_load(re.match(r"---\n(.*?)\n---\n", src, re.S).group(1))
+          assert fm["name"] == "course-studio", fm["name"]
+          assert len(fm["description"]) <= 1024, len(fm["description"])
+          print("SKILL.md frontmatter ok")
+          PY
+
+      - name: Install Python deps and Chromium
+        run: |
+          pip install -r skills/course-studio/requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Fetch the Anatomy skill
+        run: git clone --depth 1 https://github.com/wheresryan22/anatomy "$RUNNER_TEMP/anatomy"
+
+      - name: Smoke test (rebuild example, check pages)
+        env:
+          SHOTS: ${{ runner.temp }}/shots
+        run: tests/smoke.sh "$RUNNER_TEMP/anatomy"
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: ${{ runner.temp }}/shots*
+          if-no-files-found: ignore

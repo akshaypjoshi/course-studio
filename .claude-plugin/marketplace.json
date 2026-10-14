@@ -1,0 +1,19 @@
+{
+  "name": "course-studio",
+  "owner": { "name": "Akshay Joshi", "url": "https://github.com/akshaypjoshi" },
+  "metadata": {
+    "description": "Course Studio: courses, chapters and notes with interactive Anatomy figures."
+  },
+  "plugins": [
+    {
+      "name": "course-studio",
+      "source": "./",
+      "description": "Plan and write technical courses, chapters, notes and cheat sheets, with every diagram built as an interactive isometric figure by the Anatomy skill.",
+      "version": "0.1.0",
+      "author": { "name": "Akshay Joshi" },
+      "license": "MIT",
+      "category": "education",
+      "keywords": ["course", "curriculum", "notes", "anatomy", "diagrams"]
+    }
+  ]
+}
