@@ -1,7 +1,7 @@
 <h1 align="center">Course Studio</h1>
 
 <p align="center">
-  An agent skill that plans and writes technical courses (syllabi, chapters, notes and cheat sheets),<br>
+  An agent skill that plans and writes courses on any subject (syllabi, chapters, notes and cheat sheets),<br>
   with every diagram built as an interactive isometric figure by the bundled <a href="https://github.com/wheresryan22/anatomy">Anatomy</a> engine.
 </p>
 
@@ -20,9 +20,9 @@
   </picture>
 </p>
 
-Ask for *"the binary search chapter"* or *"notes on consistent hashing"* and you get a dense, verified chapter in Markdown, a signature figure whose working **is** the chapter's insight (a probe that halves a rack of gauge blocks, a turntable where a new peg captures one arc of keys), and a built page that has been checked in a headless browser on desktop, phone and dark mode.
+Ask for *"the binary search chapter"*, *"notes on consistent hashing"* or *"a course on how SpaceX rockets work"* and you get a dense, verified chapter in Markdown, a signature figure whose working **is** the chapter's insight (a probe that halves a rack of gauge blocks, a turntable where a new peg captures one arc of keys), and a built page that has been checked in a headless browser on desktop, phone and dark mode.
 
-**Website and live demo:** [skills.akshayjoshi.dev/course-studio](https://skills.akshayjoshi.dev/course-studio/) has the interactive figure running in the page, and the finished [Hashing chapter](https://skills.akshayjoshi.dev/course-studio/example/05-hashing.html).
+**Website and live demo:** [skills.akshayjoshi.dev/course-studio](https://skills.akshayjoshi.dev/course-studio/) has two figures running live in the page (the hash sorter and a Raptor 2 rocket engine you can take apart), and the finished [Hashing chapter](https://skills.akshayjoshi.dev/course-studio/example/05-hashing.html).
 
 ## What it does
 
@@ -34,12 +34,14 @@ Ask for *"the binary search chapter"* or *"notes on consistent hashing"* and you
 | a cheat sheet / revision notes | `cheatsheet.md`: tables, patterns, one-liners, no new figures |
 | a figure for an existing chapter | a brief, the Anatomy figure, and the rebuilt chapter |
 
+**Any subject.** Software gets code; real machines, the body and the natural world get the real thing drawn as the figure (a rocket engine on its test stand, a four-chamber heart, a ripple tank); business and science get the mechanism behind the numbers. Real-world facts are taken from published sources, not memory. Subjects with no mechanism to show (history narratives, vocabulary) get tables and timelines instead of figures.
+
 What makes the output trustworthy:
 
 - **Every code block is run**, every number verified, and the figure is driven by the same `model.mjs` as the chapter's worked example, so text, readout and caption agree.
 - **Pages are checked**, not just generated: `check_pages.py` flags JS errors, clipped or unbuilt figures, broken links, sideways scroll, empty sections and em dashes, and saves screenshots for review.
 - **A consistent house style**: dense prose with no filler and no em dashes, in the text, in `course.json` and on the figure cards. `build_chapter.py` warns with line numbers and the page check catches anything that slips through.
-- **An object atlas** gives starting machines for ~90 concepts across DSA, System Design, JavaScript and Low-Level Design, plus a method for inventing one for anything else.
+- **An object atlas** gives starting machines for ~90 software concepts (DSA, System Design, JavaScript, Low-Level Design) and for real machines and science (rocket engines, staging, orbits, the heart, gears, locks, tides, markets), plus a method for inventing one for anything else.
 
 <p align="center">
   <picture>
@@ -96,6 +98,8 @@ Just ask, in any project:
 Plan a System Design course, about 30 hours, for engineers preparing for senior interviews.
 Write chapter 4 of the DSA course: binary search.
 Notes on the JavaScript event loop, with a figure.
+Plan a short course on how SpaceX rockets work, for curious adults.
+A lesson on how the heart pumps blood, for high-school students.
 Cheat sheet for graph algorithms.
 ```
 

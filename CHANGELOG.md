@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 (2026-10-14)
+
+- **Any subject, not just software.** The skill now covers engineering, science, the body, business and more. It adds must-haves for "how things work", natural sciences, business and humanities (writing.md §3), a "draw the real thing" rule for physical subjects, and a new atlas section with rocket engines, staging, orbits, the heart, gears, locks, tides and markets.
+- Real-world facts must come from published sources (searched), with approximations marked and years given for anything that changes.
+- Audience defaults now follow the subject; code languages apply only to programming courses. Added an example syllabus outside the presets (How Rockets Work).
+- Website: a "Not just software" section with Anatomy's Raptor 2 engine running live.
+- Evals: four new trigger cases and a rocket-engine chapter task.
 
 - Website at [skills.akshayjoshi.dev/course-studio](https://skills.akshayjoshi.dev/course-studio/): a landing page with the hashing figure running live, and the demo course and chapter built by the skill's own scripts. Source in `site/`; CI builds it on every push.
 

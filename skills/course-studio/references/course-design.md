@@ -1,6 +1,6 @@
 # Designing a course
 
-Contents: 1. Inputs · 2. From outcomes to chapters · 3. course.json · 4. Starting syllabi for the preset courses · 5. Delivering the plan
+Contents: 1. Inputs · 2. From outcomes to chapters · 3. course.json · 4. Starting syllabi for the preset courses, and beyond them · 5. Delivering the plan
 
 ---
 
@@ -10,13 +10,13 @@ Read what the user gave and fill the rest with sensible defaults stated in one l
 
 | Field | Default when not given |
 |---|---|
-| Audience | Working engineers and final-year students preparing for product-company interviews |
+| Audience | Inferred from the subject: for software and interview topics, working engineers and final-year students; for everything else, curious adults with no special background. Ask when the level (school, university, professional) is unclear and would change the whole plan. |
 | Level | As on the course card (presets: DSA Beginner → Advanced; others Intermediate) |
 | Hours | As on the card; a chapter ≈ 35–50 min reading + practice |
-| Languages | DSA: C++ / Python / JavaScript / Go; JS course: JavaScript; LLD: Java-style pseudocode plus TypeScript |
+| Languages | Only for programming courses. DSA: C++ / Python / JavaScript / Go; JS course: JavaScript; LLD: Java-style pseudocode plus TypeScript. Other subjects: none, use units, diagrams and worked numbers instead. |
 | Price, status | **Never invent prices.** Keep what the user stated or what's already in `course.json`; otherwise `null`. |
 
-Search before writing when the course depends on the current landscape (interview formats, current tooling, versions of runtimes, real systems' architectures). Course structure itself doesn't need search.
+Search before writing when the course depends on facts you might misremember or that change: interview formats, current tooling and versions, real systems' architectures, and for real-world subjects, the specs of real machines (a rocket's engines and stages), scientific values, and dates, names and figures. Course structure itself doesn't need search.
 
 ## 2. From outcomes to chapters
 
@@ -83,6 +83,10 @@ The four built-in presets (these slugs get their colours automatically). Startin
 **JavaScript, Deeply (4 chapters, 18 hrs)**: 1 Execution: contexts, hoisting, TDZ, scope chain, closures, `this` · 2 Objects: prototypes, classes, references vs values, property descriptors, hidden classes · 3 Async: event loop, tasks vs microtasks, promises, async/await, generators · 4 Memory & performance: garbage collection, leaks, debounce/throttle, modules & bundling.
 
 **Low-Level Design (3 chapters, 22 hrs)**: 1 Object modelling & SOLID: entities, responsibilities, relationships, dependency inversion · 2 Design patterns that come up in machine-coding rounds: strategy, observer, factory, builder, state, command, decorator, adapter, chain of responsibility, singleton (with when *not* to) · 3 Machine-coding walkthroughs: parking lot, elevator, LRU cache, rate limiter, splitwise, with concurrency.
+
+### Beyond the presets
+
+The same method works for any subject. For example, **How Rockets Work (6 chapters, about 5 hrs, curious adults)**: 1 Why rockets fly: action and reaction, thrust and weight · 2 The rocket equation: why most of a rocket is propellant · 3 Inside the engine: pumps, combustion chamber and nozzle, with a full-flow staged-combustion engine such as SpaceX's Raptor as the figure · 4 Staging and reuse: why rockets drop parts, and how a booster flies back and lands · 5 Steering: engine gimbal, grid fins and guidance · 6 Getting to orbit: falling around the Earth. Each chapter still gets one figure of the real hardware, with numbers checked against SpaceX and NASA sources.
 
 ## 5. Delivering the plan
 

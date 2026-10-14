@@ -14,8 +14,13 @@ A figure earns its place when the insight is a **mechanism that moves**: somethi
 - why a hash map is O(1) and when it isn't (the selector turning straight to a slot; a hook chain growing)
 - why microtasks run before the next task (the clerk emptying the priority tray first)
 - why adding a server moves only one arc of keys (a peg dropped onto a turntable)
+- how a rocket engine makes thrust (propellant flowing through pumps into the chamber, the plume leaving the nozzle)
+- why the heart only pumps one way (four valves snapping shut in turn)
+- how a gearbox trades speed for torque (a small gear spinning a big one slowly)
 
-Not figure material: definitions, lists, complexity tables, API surfaces, code walkthroughs, comparisons of options (use a table or `[!TRADEOFF]`), anything static. Don't draw boxes-and-arrows architecture with Anatomy. Invent the machine (see `object-atlas.md`) or use prose plus a table.
+**When the subject is a real thing, draw the real thing.** A course on how SpaceX rockets work gets the engine itself, simplified but with true proportions and parts in their real places, not a metaphor. Anatomy's `examples/raptor-engine/` (Raptor 2 on a test stand, with a shader plume and an exploded view) shows the level to aim for, and `examples/ripple-tank/` shows a physics experiment. Take dimensions and numbers from published sources, and put the source in `brief.md`.
+
+Not figure material: definitions, lists, complexity tables, API surfaces, code walkthroughs, timelines, narratives, vocabulary, comparisons of options (use a table or `[!TRADEOFF]`), anything static. Don't draw boxes-and-arrows architecture with Anatomy. Invent the machine (see `object-atlas.md`) or use prose plus a table.
 
 ## 2. Budget and time
 

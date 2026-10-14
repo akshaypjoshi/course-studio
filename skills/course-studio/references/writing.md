@@ -12,6 +12,7 @@ Contents: 1. Kinds of output · 2. The chapter arc · 3. Per-course must-haves �
 | "notes on X", "explain X" | `notes` | 800–1,800 words | 0–1, prefer reusing a chapter figure | idea → mechanism → pitfalls → check |
 | "cheat sheet", "revision notes", "quick reference" | `cheatsheet` | 1–2 screens | none new; link chapter figures | tables, patterns, complexity, one-liners |
 | "interview prep for X" | `notes` | 1,000–2,000 words | 0–1 | patterns → canonical problems → what interviewers probe |
+| "explain how X works" (a machine, an organ, a market) | `notes` or `chapter` | as above | 1, the thing itself | the job → watch it work → parts and cycle → numbers → how it fails |
 
 ## 2. The chapter arc
 
@@ -19,11 +20,11 @@ Outline before writing. For every section write one sentence: *what the learner 
 
 1. **Hook / the one idea**: the insight in one or two sentences, before any definition. A concrete situation where it matters.
 2. **Watch it work**: the signature figure, placed where the idea first needs to be *seen*. The prose before it says what to watch; the prose after it names what they just saw.
-3. **Why it works**: the invariant, proof sketch, or the rule from the spec. This is what separates the course from tutorials.
-4. **Build it**: code (DSA, JS, LLD) or the design (SD), with the decisions explained line by line where they're non-obvious.
-5. **Variants**: the 2–3 shapes the idea takes in practice and interviews.
-6. **Cost & trade-offs**: complexity table (DSA), numbers and trade-offs (SD), performance/semantics (JS), extension cost (LLD).
-7. **Pitfalls**: specific bugs, each with the line, the input that breaks it and the symptom.
+3. **Why it works**: the invariant, proof sketch, physical law or rule from the spec. This is what separates the course from tutorials.
+4. **Build it / take it apart**: code (DSA, JS, LLD), the design (SD), or for a real thing, its parts and its cycle in order, with the decisions explained where they're non-obvious.
+5. **Variants**: the 2–3 shapes the idea takes in practice (other designs of the same machine, other species, other markets; and in interviews, for interview-prep courses).
+6. **Cost & trade-offs**: complexity table (DSA), numbers and trade-offs (SD), performance/semantics (JS), extension cost (LLD), or for physical and natural subjects, the real numbers and what limits them (mass, heat, energy, cost, safety).
+7. **Pitfalls**: specific bugs, each with the line, the input that breaks it and the symptom. Outside software: the common misconception, or how the thing fails and why.
 8. **Check yourself**: 3–4 transfer questions with answers.
 9. **Recap**: 3–5 bullets a learner could revise from.
 
@@ -39,6 +40,14 @@ The figure's idle tour, readout and caption must show exactly the moments the te
 
 **Low-Level Design**: requirements and assumptions · entities and responsibilities table · class relationships · the core methods in code · the pattern(s) used and why · "extending it" section: a new requirement and what changes · concurrency notes where it matters.
 
+**How things work** (machines, vehicles, structures, devices: a rocket engine, a jet, a bridge, a lock, a fridge): the job it does in one sentence · the parts and what each one is for · the cycle or sequence in order, which is also the figure's tour · real numbers with units and their source (thrust, pressure, speed, efficiency), marked as approximate where they are · why it's built this way and not the obvious alternative · how it fails · a back-of-envelope check the learner can do (e.g. thrust ÷ weight).
+
+**Natural sciences and the body** (physics, chemistry, biology, earth science): the law or process in one sentence · a worked example with real numbers · the experiment or observation that shows it · the common misconception, named and corrected · scale (how big, how fast, how often) · where the simple model breaks.
+
+**Business, economics and finance**: the mechanism in one sentence (who pays whom, for what, and why) · a worked example with numbers · the incentives of each party · what happens at the extremes (a crash, a monopoly, a bank run) · one real case, verified and dated.
+
+**Humanities, history and languages**: figures are rare here, used only where there is a real mechanism (a printing press, an aqueduct, a trebuchet). Use timelines, cause → effect tables and primary-source quotes instead · the claim and the evidence for it · dates and names checked · competing interpretations where historians disagree.
+
 **Any other subject**: same arc; replace the must-haves with that field's equivalents (the core rule, the worked example, the common mistake, the transfer question).
 
 ## 4. Writing rules
@@ -47,10 +56,11 @@ The figure's idle tour, readout and caption must show exactly the moments the te
 - **Concrete before abstract.** Trace real numbers, then generalise. Every formula gets one worked number.
 - **Explain why each step exists.** "lo = mid + 1 because a[mid] is already too small", not "update lo".
 - **Name pitfalls precisely**: the line, the input, the symptom.
-- **Density over padding.** No "In this chapter we will…", "Let's dive in", restated headings, or motivational filler. The audience is busy engineers and serious students; respect their time.
+- **Density over padding.** No "In this chapter we will…", "Let's dive in", restated headings, or motivational filler. Write for the course's stated audience and respect their time: busy professionals get density, school-age learners get shorter sentences and more worked examples, never condescension.
 - **No em dashes (Unicode U+2014) anywhere in generated content**: chapters, notes, cheat sheets, `course.json` text, figure briefs and card text (title, hint, readout, keys, caption). Use a comma, a colon, parentheses or a new sentence instead. Don't fake one with ` - ` or `--` either. En dashes in number ranges (`25–45 min`) are fine. `build_chapter.py` warns with line numbers and `check_pages.py` reports any that reach a page.
 - **One idea per paragraph**, 2–5 sentences. Bold only the phrase a skimmer must not miss, at most one per paragraph.
 - **Correctness is non-negotiable.** Run every code block (write it to a scratch file and execute it with a few inputs). Verify complexity claims, numbers and real-world claims; search for anything about current systems or versions.
+- **Real-world facts come from sources, not memory.** For real vehicles, machines, companies, people, events and statistics, search and use published figures (the manufacturer, the agency, the paper, the textbook). Say "about" for approximations, give the year for anything that changes (a rocket's thrust, a company's market share), and never present a guess as a spec. Describe real organisations accurately and neutrally.
 - **Point at the figure precisely.** "Watch the probe drop between blocks 4 and 7", not "see the diagram".
 - **Consistent vocabulary** across the course: pick one term (e.g. "invariant", "search space") and keep it. Record course-wide terms in `course.json` → `"glossary"` when they recur.
 - **Callouts are seasoning**: at most one per ~3 paragraphs.

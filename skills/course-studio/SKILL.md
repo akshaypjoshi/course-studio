@@ -1,6 +1,6 @@
 ---
 name: course-studio
-description: Plan and write technical courses, chapters, lessons, notes and cheat sheets, with every diagram built as an interactive isometric figure by the bundled Anatomy engine, and build them into styled, self-checking HTML pages. Ships presets for Data Structures & Algorithms, System Design, JavaScript and Low-Level Design, and works for any technical subject. Use whenever the user asks to create or outline a course, a syllabus or curriculum, a chapter or lesson, notes, revision notes, a cheat sheet, interview-prep material, or "explain X visually for the course", even if they only name a topic like "binary search chapter" or "notes on consistent hashing".
+description: Plan and write courses, chapters, lessons, notes and cheat sheets on any subject (software, engineering, science, how machines and the natural world work, business), with every diagram built as an interactive isometric figure by the bundled Anatomy engine, and build them into styled, self-checking HTML pages. Ships presets for Data Structures & Algorithms, System Design, JavaScript and Low-Level Design. Use whenever the user asks to create or outline a course, a syllabus or curriculum, a chapter, lesson or module, study or revision notes, a cheat sheet, interview-prep material, or "explain X visually for the course", even if they only name a topic like "binary search chapter", "notes on consistent hashing", "a course on how SpaceX rockets work" or "a lesson on how the heart pumps blood".
 license: MIT
 compatibility: Bundles the Anatomy figure engine (MIT). Needs Python 3.9+ with markdown, pyyaml, pygments (playwright + Chromium for checks), and Node.js 20.10+ for figures.
 ---
@@ -38,6 +38,8 @@ Course Studio writes the teaching; **Anatomy draws the figures**. Its engine is 
 | a cheat sheet / revision notes | `cheatsheet.md` (kind `cheatsheet`), no new figures | writing.md §6 |
 | a figure for an existing chapter | brief + Anatomy figure + rebuilt chapter | figures.md |
 
+**Any subject works.** Software topics get code; physical and natural subjects (a rocket engine, a heart, a gearbox, a tide) get the real thing drawn as the figure; business and science topics get the mechanism behind the numbers. writing.md §3 has the must-haves per kind of subject, and object-atlas.md covers both software concepts and real machines. Subjects with no mechanism to show (history narratives, vocabulary, literature) get fewer or no figures: use tables, timelines and callouts instead.
+
 If the request names a course that already has a `course.json`, read it first: the chapter must fit its sequence, vocabulary (`glossary`), languages and visual family. Look for the workspace (a folder with `courses/` or `course.json`) in the user's project before creating a new one; default location is `./courses/`.
 
 Say the scope in one line before starting, e.g. "Writing Ch 4 with one Anatomy figure (Figure size)." Follow Anatomy's sizing rule on time: don't quote a time for Figure-size work; give Anatomy's estimate only for a Hero, and never start an Epic unasked. Figures are real work, so a whole course is planned at once but written chapter by chapter unless the user asks for a batch.
@@ -48,7 +50,7 @@ Say the scope in one line before starting, e.g. "Writing Ch 4 with one Anatomy f
 2. **Outline.** Write the section list with one outcome sentence each (writing.md §2) and the course's must-haves (§3). Identify the single insight that most needs to be *seen moving*: that's the signature figure (figures.md §1). Pick its object from the atlas or invent one with the atlas's method.
 3. **Brief the figure early.** Write the paragraph that surrounds `::figure`, then fill `figures/<id>/brief.md` from it: insight, truth model with the chapter's exact example numbers, object and mapping, interaction and tour beats, card text (figures.md §3).
 4. **Build the figure with Anatomy.** Put the truth model in `figures/<id>/model.mjs` so the figure and the chapter's numbers share one source. Read `anatomy/ANATOMY.md` (in this skill's folder) and follow its workflow in `figures/<id>/` with the brief as the spec, keeping the output contract (`<id>.html` + `<id>-light.html` from one `node build.mjs`). With the Agent tool available, hand each figure to a subagent as soon as its brief exists and write the chapter meanwhile (figures.md §5); without it, build the figure first, then write.
-5. **Write the chapter** in `chapter.md` following the arc and rules. Run every code block in a scratch file; verify every number and real-world claim.
+5. **Write the chapter** in `chapter.md` following the arc and rules. Run every code block in a scratch file; verify every number and real-world claim, and for real machines, organisations, people or events, check them against reliable sources (search) rather than memory.
 6. **Build and check.** `build_chapter.py chapter.md` → `check_pages.py` on `dist/` (default, and `--mobile --dark`). Read the screenshots: the page, then each figure in context. Fix until the only PROBLEM lines are figures you've deliberately left pending.
 7. **Reconcile text and figure.** The text must name moments the figure shows, with the same numbers and words. Update `course.json` (`status`, final figure ids/objects), rebuild the course page.
 8. **Deliver** (below).
@@ -69,6 +71,6 @@ End with one line on what was made, what's pending (e.g. a figure still building
 
 - The chapter teaches one insight so well that the self-checks are easy *after* reading and hard before.
 - The figure is an Anatomy figure that passes Anatomy's own verification, not a diagram of boxes. It shows exactly the moments the text refers to, with the same numbers.
-- Nothing is padded; every code block has been run; every number is true.
+- Nothing is padded; every code block has been run; every number and fact is true and, for real-world subjects, sourced.
 - **No em dashes in anything generated**: prose, `course.json` text, briefs, figure card text. Use commas, colons, parentheses or a new sentence (writing.md §4). Builds warn and checks report any that slip through.
 - Pages pass `check_pages.py` on desktop, phone and dark.

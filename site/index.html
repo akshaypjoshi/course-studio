@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Course Studio</title>
-<meta name="description" content="An agent skill that plans and writes technical courses, chapters, notes and cheat sheets, with every diagram built as an interactive isometric figure.">
+<meta name="description" content="An agent skill that plans and writes courses, chapters, notes and cheat sheets on any subject, from algorithms to rocket engines, with every diagram built as an interactive isometric figure.">
 <link rel="canonical" href="https://skills.akshayjoshi.dev/course-studio/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Course Studio">
-<meta property="og:description" content="Plan and write technical courses with interactive isometric figures. One install for Claude Code and other agents.">
+<meta property="og:description" content="Plan and write courses on anything, from algorithms to rocket engines, with interactive isometric figures. One install for Claude Code and other agents.">
 <meta property="og:url" content="https://skills.akshayjoshi.dev/course-studio/">
 <meta property="og:image" content="https://skills.akshayjoshi.dev/course-studio/assets/figure-light.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -95,7 +95,7 @@ h2 { font: 800 clamp(28px, 4vw, 40px)/1.08 var(--font-display); letter-spacing: 
 .figure-note { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font: 13px var(--font-mono); color: var(--ink-3); margin-top: 12px; }
 
 /* asks grid */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
 .card { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 20px 20px 18px; }
 .card .ask { font: 500 13px/1.5 var(--font-mono); color: var(--accent); margin: 0 0 10px; }
 .card h3 { font: 700 19px/1.25 var(--font-display); margin: 0 0 6px; }
@@ -159,7 +159,7 @@ footer a { color: var(--ink-2); }
   <header class="hero">
     <div class="pills"><span class="pill dark">Agent skill</span><span class="pill">Claude Code plugin</span><span class="pill">MIT</span></div>
     <h1>Course Studio</h1>
-    <p class="dek">Plan and write technical courses, chapters, notes and cheat sheets. Every diagram is an interactive isometric machine whose working <em>is</em> the idea, and every page is built and checked before you see it.</p>
+    <p class="dek">Plan and write courses, chapters, notes and cheat sheets on anything, from binary search to how a rocket engine works. Every diagram is an interactive isometric machine whose working <em>is</em> the idea, and every page is built and checked before you see it.</p>
 
     <div class="install">
       <div class="tabs" role="tablist" aria-label="Install method">
@@ -189,9 +189,19 @@ footer a { color: var(--ink-2); }
     <h2 id="h-figure">Figures you can play with, not boxes and arrows</h2>
     <p class="lead">This is the figure from the demo chapter on hashing, running live. A dial computes <code>k mod 8</code> and a shuttle drops each key into its tray. Hover or use the arrow keys to step through inserts, and watch one bad set of keys pile into a single chain.</p>
     <div class="figure-frame">
-      <iframe id="live-fig" title="Interactive figure: hash sorter" data-light="example/figure/fig-01-hash-sorter-light.html" data-dark="example/figure/fig-01-hash-sorter.html" loading="lazy"></iframe>
+      <iframe class="live-fig" title="Interactive figure: hash sorter" data-light="example/figure/fig-01-hash-sorter-light.html" data-dark="example/figure/fig-01-hash-sorter.html" loading="lazy"></iframe>
     </div>
     <div class="figure-note"><span>Built by the bundled Anatomy engine from one <code>build.mjs</code></span><a href="example/05-hashing.html#watch-it-work">See it in the chapter</a></div>
+  </section>
+
+  <section id="any" aria-labelledby="h-any">
+    <div class="eyebrow">Not just software</div>
+    <h2 id="h-any">How a SpaceX rocket works? Draw the real engine.</h2>
+    <p class="lead">For a physical subject the figure is the thing itself. This is Raptor 2, SpaceX's full-flow staged-combustion engine, on a test stand, drawn by the same engine Course Studio bundles. Hover or use the arrow keys to take it apart part by part, then press Ignite.</p>
+    <div class="figure-frame">
+      <iframe class="live-fig" title="Interactive figure: Raptor 2 rocket engine on a test stand" data-light="example/figure/raptor-engine-light.html" data-dark="example/figure/raptor-engine.html" loading="lazy"></iframe>
+    </div>
+    <div class="figure-note"><span>Numbers on the card are SpaceX's published figures: 300 bar, 230 tf</span><a href="https://github.com/wheresryan22/anatomy/tree/main/examples/raptor-engine">Anatomy example</a></div>
   </section>
 
   <section id="asks" aria-labelledby="h-asks">
@@ -203,6 +213,8 @@ footer a { color: var(--ink-2); }
       <div class="card"><p class="ask">"Write the binary search chapter"</p><h3>A full chapter</h3><p>A fixed teaching arc from hook to recap, code that has been run, its signature figure, and a built page.</p></div>
       <div class="card"><p class="ask">"Notes on consistent hashing"</p><h3>Notes and interview prep</h3><p>A compressed arc: idea, mechanism, code, pitfalls, two checks. Reuses a chapter figure where one fits.</p></div>
       <div class="card"><p class="ask">"Cheat sheet for graphs"</p><h3>A cheat sheet</h3><p>Tables, patterns, complexity grids and one-liners on one or two screens. No new figures, links for depth.</p></div>
+      <div class="card"><p class="ask">"A course on how rockets work"</p><h3>Any subject</h3><p>Machines, the body, physics, markets. Real things drawn as themselves, numbers taken from published sources.</p></div>
+      <div class="card"><p class="ask">"Lesson on how the heart pumps"</p><h3>Any audience</h3><p>From school students to professionals. The writing adapts; the checks stay the same.</p></div>
     </div>
   </section>
 
@@ -222,7 +234,7 @@ footer a { color: var(--ink-2); }
     <div class="eyebrow">Quality bar</div>
     <h2 id="h-quality">Checked, not just generated</h2>
     <ul class="checks">
-      <li><b>Every code block is run</b> and every number verified before it lands in the chapter.</li>
+      <li><b>Every code block is run</b>, every number verified, and real-world facts taken from published sources, not memory.</li>
       <li><b>Pages pass a headless check</b>: no JS errors, clipped or missing figures, broken links or sideways scroll.</li>
       <li><b>Figures pass their own audit</b> and are reviewed at 4x, on a 390px phone and in both themes.</li>
       <li><b>One house style</b>: dense prose, no filler, no em dashes. Builds warn and checks catch anything that slips.</li>
@@ -253,7 +265,7 @@ footer a { color: var(--ink-2); }
 
   <section id="presets" aria-labelledby="h-presets">
     <div class="eyebrow">Presets</div>
-    <h2 id="h-presets">Four courses built in, any subject welcome</h2>
+    <h2 id="h-presets">Four presets built in, any subject welcome</h2>
     <p class="lead">These slugs come with a colour identity and a starting syllabus. Anything else works the same way with a neutral palette or your own accent.</p>
     <div class="presets">
       <div class="preset" style="--t:var(--tint);--c:var(--accent)"><b>Data Structures &amp; Algorithms</b><span>dsa</span><i aria-hidden="true">DSA</i></div>
@@ -312,28 +324,30 @@ footer a { color: var(--ink-2); }
     });
   });
 
-  // live figure: follow the colour scheme, size the frame to its content
-  var f = document.getElementById('live-fig'), mq = matchMedia('(prefers-color-scheme: dark)');
+  // live figures: follow the colour scheme, size each frame to its content
+  var mq = matchMedia('(prefers-color-scheme: dark)');
   function theme() { return document.documentElement.dataset.theme || (mq.matches ? 'dark' : 'light'); }
-  function size() {
-    try { var d = f.contentDocument; if (d && d.body) f.style.height = Math.max(d.documentElement.scrollHeight, d.body.scrollHeight) + 'px'; } catch (e) {}
-  }
-  function load() {
-    var t = theme(), src = f.dataset[t];
-    f.style.colorScheme = t;  // must match the figure's root, or Chrome paints an opaque canvas behind it
-    if (f.getAttribute('src') !== src) f.src = src;
-  }
-  f.addEventListener('load', function () {
-    try {
-      var d = f.contentDocument, s = d.createElement('style');
-      s.textContent = 'html{color-scheme:' + theme() + '!important}html,body{background:transparent!important;margin:0!important}.iso-page{margin:6px auto 4px!important}';
-      d.head.appendChild(s);
-      new ResizeObserver(size).observe(d.body);
-    } catch (e) {}
-    size(); setTimeout(size, 400);
+  [].slice.call(document.querySelectorAll('.live-fig')).forEach(function (f) {
+    function size() {
+      try { var d = f.contentDocument; if (d && d.body) f.style.height = Math.max(d.documentElement.scrollHeight, d.body.scrollHeight) + 'px'; } catch (e) {}
+    }
+    function load() {
+      var t = theme(), src = f.dataset[t];
+      f.style.colorScheme = t;  // must match the figure's root, or Chrome paints an opaque canvas behind it
+      if (f.getAttribute('src') !== src) f.src = src;
+    }
+    f.addEventListener('load', function () {
+      try {
+        var d = f.contentDocument, s = d.createElement('style');
+        s.textContent = 'html{color-scheme:' + theme() + '!important}html,body{background:transparent!important;margin:0!important}.iso-page{margin:6px auto 4px!important}';
+        d.head.appendChild(s);
+        new ResizeObserver(size).observe(d.body);
+      } catch (e) {}
+      size(); setTimeout(size, 400); setTimeout(size, 1500);
+    });
+    mq.addEventListener('change', load);
+    load();
   });
-  mq.addEventListener('change', load);
-  load();
 })();
 </script>
 </body>

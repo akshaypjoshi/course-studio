@@ -5,7 +5,9 @@
       "id": 1,
       "prompt": "Write chapter 4 (Binary Search) of the DSA course in ./courses. Keep it to one signature figure.",
       "expected_output": "courses/dsa/chapters/04-binary-search/chapter.md following the chapter arc (hook, figure, invariant, code, variants, complexity table, pitfalls, 3-4 transfer checks, recap); figures/fig-01-*/ with brief.md, model.mjs and an Anatomy build.mjs producing dark and light HTML; dist/04-binary-search.html built; check_pages.py passes on desktop and mobile+dark; numbers in text, readout and caption agree.",
-      "files": ["examples/courses/dsa/course.json"],
+      "files": [
+        "examples/courses/dsa/course.json"
+      ],
       "expectations": [
         "chapter.md has front matter with title, dek, chapter: 4, minutes, outcomes",
         "Exactly one ::figure directive, placed in the 'watch it work' part of the arc",
@@ -34,13 +36,28 @@
       "id": 3,
       "prompt": "Make a one-page cheat sheet on hashing for revision, using the existing DSA course.",
       "expected_output": "A cheatsheet.md (kind: cheatsheet) under the hashing chapter or notes/, made of tables, patterns and one-liners, no new figures, linking the chapter page; built with build_chapter.py and passing check_pages.py.",
-      "files": ["examples/courses/dsa/"],
+      "files": [
+        "examples/courses/dsa/"
+      ],
       "expectations": [
         "front matter kind is cheatsheet",
         "no new figure folders were created",
         "no prose paragraph longer than two sentences",
         "complexity numbers match the hashing chapter",
         "no em dashes anywhere in the cheat sheet"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Write chapter 3 of a 'How Rockets Work' course for curious adults: inside the engine, using SpaceX's Raptor as the example.",
+      "expected_output": "A chapter following the 'how things work' must-haves (job, parts, cycle in order, real numbers with sources, why it's built this way, how it fails, a back-of-envelope check), with one figure of the real engine (simplified, true layout) whose tour follows the propellant flow; numbers searched from published sources, approximations marked, and no code blocks forced in.",
+      "files": [],
+      "expectations": [
+        "Specs (chamber pressure, thrust, mixture ratio) were looked up during the session, not recalled, and the source or year is given",
+        "The figure is the engine itself, not a metaphor, and its tour follows the propellant flow named in the text",
+        "No programming code blocks; units and worked numbers instead",
+        "A thrust-to-weight or similar back-of-envelope check is included",
+        "No em dashes anywhere in the chapter, brief or card text"
       ]
     }
   ]

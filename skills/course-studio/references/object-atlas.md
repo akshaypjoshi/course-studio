@@ -4,7 +4,7 @@ Anatomy's hardest step is "invent the object": a real, recognisable machine whos
 
 Each row: **concept** · **object** · **what moves = what it means** · **readout** (the live number on the card).
 
-Contents: How to invent one · DSA · System Design · JavaScript, Deeply · Low-Level Design · Reuse across a course
+Contents: How to invent one · DSA · System Design · JavaScript, Deeply · Low-Level Design · Real machines, science and everyday systems · Reuse across a course
 
 ---
 
@@ -122,6 +122,31 @@ Reject an object when: the reader must be told what it is (too abstract), it nee
 | Parking lot (machine-coding) | Model parking garage: ticket machine, floors, spot sensors, exit gate | Ticket = object lifecycle | `free 12/40` |
 | Elevator system | Glass elevator shaft model with call buttons and a dispatcher drum | Scheduling = drum order | `car 1 → 7` |
 | LRU cache (design) | Shelf with a push-rod: used items slide to the front, the back item drops into a bin | Eviction = falling off the back | `size 4/4 · evicted C` |
+
+## Real machines, science and everyday systems
+
+For a physical subject the object is usually **the thing itself**, cut away or taken apart so the working parts show. For an abstract one (money, markets, an ecosystem), invent a machine as above. Check every number against a published source before it goes on the card.
+
+| Concept | Object | Moves = means | Readout |
+|---|---|---|---|
+| Rocket engine (how thrust is made) | The engine on a test stand, as in Anatomy's `examples/raptor-engine/` | Propellants flow through turbopumps into the chamber; the plume leaves the nozzle; an exploded view separates the parts | `Pc 300 bar · 230 tf` (Raptor 2, SpaceX figures) |
+| Staging | A two-stage stack on a launch mount | Booster burns, separates and falls away; the upper stage lights and carries on lighter | `stage 2 lit · booster away` |
+| Rocket equation (why most of a rocket is fuel) | A stack of propellant tanks on a scale beside a small payload | Each tank drained adds a fixed step of speed; the payload stays tiny | `Δv 9.4 km/s · 94% propellant` |
+| Orbit (falling and missing) | Newton's cannon on a mountain on a small globe | Faster shots land further round until one never lands | `v 7.8 km/s · orbit` |
+| Four-stroke engine | One cylinder cut away: piston, crank, two valves, spark plug | Intake, compression, power, exhaust in turn; valves open on cue | `stroke 3/4 · power` |
+| Gears, torque | A gear train on a bench with a hand crank and a lifted weight | Small gear turns fast, big gear turns slow and lifts more | `ratio 4:1 · torque ×4` |
+| Pin-tumbler lock | The lock cut away with a key going in | Each cut lifts its pin stack to the shear line; the plug turns only when all align | `pins 5/5 at shear line` |
+| Refrigerator / heat pump | Compressor, condenser coil, expansion valve, evaporator on a frame | Refrigerant loops, hot on one side, cold on the other | `inside 4 °C · coil 40 °C` |
+| Electric motor | A cutaway motor: rotor, magnets, commutator, brushes | The commutator flips the current each half turn so the rotor keeps turning | `rpm 3,000 · 0.5 A` |
+| Heart | A four-chamber pump with valves, cut away | Chambers squeeze in sequence; valves snap shut to stop backflow | `72 bpm · 70 ml/beat` |
+| Lungs, breathing | A bell jar with a rubber diaphragm and two balloons | Pulling the diaphragm down lowers pressure; the balloons fill | `inhale · tidal 500 ml` |
+| Waves, interference | A ripple tank with two dippers, as in Anatomy's `examples/ripple-tank/` | Two sources make bright and dark bands where waves add and cancel | `λ 2 cm · 2 sources` |
+| Tides | A small globe and moon on a turntable with a water shell | The water bulges towards and away from the moon as the globe turns | `high tide · 12 h 25 m` |
+| Supply and demand | A balance with a price slider between buyers' and sellers' trays | Raising the price moves units from the buyers' tray to the sellers' | `price 4.00 · 120 sold` |
+| Compound interest | A coin press that adds a slice to every coin in the stack each year | The stack grows faster each year because the slices also earn | `5% · year 10 · 1.63× the start` |
+| Printing press (history) | A Gutenberg-style screw press with a type bed and a paper frame | Ink, press, lift: one sheet per pull | `sheets 240/h` |
+
+Rows with real-world numbers are starting points: confirm each number for the exact model, year and conditions the chapter discusses before using it.
 
 ## Reuse across a course
 

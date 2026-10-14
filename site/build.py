@@ -8,6 +8,7 @@ Output:
     <out>/example/index.html                    the DSA course page (syllabus)
     <out>/example/05-hashing.html               the Hashing chapter with its embedded figure
     <out>/example/figure/<id>[-light].html      the figure on its own (embedded live on the landing page)
+    <out>/example/figure/raptor-engine[-light].html   Anatomy's Raptor 2 example (the "any subject" demo)
 
 Needs: python deps from skills/course-studio/requirements.txt (playwright not needed) and Node.js 20.10+.
 The hub repo (akshaypjoshi/skills) runs this to publish skills.akshayjoshi.dev/course-studio/.
@@ -56,6 +57,14 @@ def main():
         (out / "example" / "figure").mkdir()
         for f in (f"{FIG}.html", f"{FIG}-light.html"):
             shutil.copy2(fig_dir / f, out / "example" / "figure" / f)
+
+        # a real machine, to show the skill isn't only for software: the bundled Raptor 2 example
+        anatomy = Path(tmp) / "anatomy"
+        shutil.copytree(SKILL / "anatomy", anatomy)
+        for flag in ([], ["--light"]):
+            run("node", "examples/raptor-engine/build.mjs", *flag, cwd=anatomy)
+        for f in ("raptor-engine.html", "raptor-engine-light.html"):
+            shutil.copy2(anatomy / "examples" / "raptor-engine" / f, out / "example" / "figure" / f)
 
     print(f"site built in {out}")
 
