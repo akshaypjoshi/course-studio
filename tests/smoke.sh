@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Smoke test: rebuild the example course from scratch and check every page.
-#   tests/smoke.sh [path-to-anatomy-skill]
+#   tests/smoke.sh [path-to-other-anatomy]   (default: the copy bundled in the skill)
 # Needs: python deps from skills/course-studio/requirements.txt, Chromium for Playwright, Node 20.10+.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

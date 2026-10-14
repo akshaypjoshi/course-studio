@@ -30,6 +30,8 @@ jobs:
           python -m json.tool .claude-plugin/marketplace.json > /dev/null
           python -m json.tool evals/evals.json > /dev/null
           python -m json.tool evals/trigger-evals.json > /dev/null
+          test -f skills/course-studio/anatomy/LICENSE && test -f skills/course-studio/anatomy/kit/iso-kit.mjs
+          if [ -f skills/course-studio/anatomy/SKILL.md ]; then echo "bundled Anatomy must not ship a SKILL.md"; exit 1; fi
           python - <<'PY'
           import re, yaml
           src = open("skills/course-studio/SKILL.md").read()
@@ -39,13 +41,10 @@ jobs:
           print("SKILL.md frontmatter ok")
           PY
 
-      - name: Fetch the Anatomy skill
-        run: git clone --depth 1 https://github.com/wheresryan22/anatomy "$RUNNER_TEMP/anatomy"
-
       - name: Smoke test (rebuild example, check pages)
         env:
           SHOTS: ${{ runner.temp }}/shots
-        run: tests/smoke.sh "$RUNNER_TEMP/anatomy"
+        run: tests/smoke.sh
 
       - name: Upload screenshots
         if: always()

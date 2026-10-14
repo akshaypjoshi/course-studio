@@ -2,8 +2,9 @@
 """Scaffold a course workspace and wire it to the Anatomy skill.
 
     python3 workspace.py init <courses-dir> [--anatomy <path-to-anatomy-skill>]
-        Copies Anatomy's kit/ and scripts/ into <courses-dir>/_anatomy/ so every
-        figure builds from one pinned copy (and keeps building on any machine).
+        Copies the bundled Anatomy engine (this skill's anatomy/: kit, scripts, references)
+        into <courses-dir>/_anatomy/ so every figure builds from one pinned copy
+        (and keeps building on any machine). --anatomy <path> uses another copy.
 
     python3 workspace.py course <courses-dir> <slug>
         Creates <courses-dir>/<slug>/course.json from the template (if missing).
@@ -29,25 +30,13 @@ TEMPLATES = SKILL / "assets" / "templates"
 
 
 def find_anatomy(explicit=None) -> Path:
-    cands = [explicit] if explicit else []
-    cands += [os.environ.get("ANATOMY_SKILL")]
-    home = Path.home()
-    cands += [home / ".claude/skills/anatomy", home / ".agents/skills/anatomy", home / ".config/opencode/skills/anatomy"]
-    mnt = Path("/mnt/skills")
-    if mnt.exists():  # the user's own copy first, then the rest
-        cands += [mnt / "user/anatomy"] + sorted(p for p in mnt.glob("*/anatomy") if p.parent.name != "user")
-    cands += sorted(home.glob(".claude/skills/**/anatomy"))
-    cands += sorted(home.glob(".claude/plugins/**/anatomy"))  # installed as a Claude Code plugin
-    cands += sorted(SKILL.parent.glob("*anatomy*"))
-    found = []
-    for c in cands:
-        if c and (Path(c) / "kit" / "iso-kit.mjs").exists() and Path(c).resolve() not in [f.resolve() for f in found]:
-            found.append(Path(c))
-    if not found:
-        sys.exit("Could not find the Anatomy skill (a folder with kit/iso-kit.mjs). Pass --anatomy <path> or set ANATOMY_SKILL.")
-    if len(found) > 1 and not explicit:
-        print(f"note: {len(found)} copies of Anatomy found; using {found[0]} (pass --anatomy to choose)")
-    return found[0]
+    """The Anatomy engine bundled in this skill (anatomy/), unless --anatomy or ANATOMY_SKILL points elsewhere."""
+    for c in (explicit, os.environ.get("ANATOMY_SKILL"), SKILL / "anatomy"):
+        if c and (Path(c) / "kit" / "iso-kit.mjs").exists():
+            return Path(c)
+        if c and c is explicit:
+            sys.exit(f"--anatomy {c}: no kit/iso-kit.mjs there")
+    sys.exit(f"Anatomy engine missing from {SKILL / 'anatomy'} — reinstall course-studio.")
 
 
 def init(courses: Path, explicit=None):
@@ -60,12 +49,16 @@ def init(courses: Path, explicit=None):
     for f in (a / "scripts").glob("*.mjs"):
         if not f.name.endswith(".test.mjs"):
             shutil.copy2(f, dst / "scripts" / f.name)
-    shutil.copy2(a / "SKILL.md", dst / "SKILL.md")
+    guide = a / "ANATOMY.md" if (a / "ANATOMY.md").exists() else a / "SKILL.md"
+    shutil.copy2(guide, dst / "ANATOMY.md")
     if (a / "references").is_dir():
         shutil.copytree(a / "references", dst / "references")
     ex = a / "examples" / "dial-indicator"  # the smallest example, for orientation; open the rest in the skill itself
     if ex.is_dir():
         shutil.copytree(ex, dst / "examples" / "dial-indicator", ignore=shutil.ignore_patterns("*.html", "shots"))
+    for f in ("LICENSE", "VERSION"):
+        if (a / f).exists():
+            shutil.copy2(a / f, dst / f)
     (dst / "SOURCE.txt").write_text(f"Copied from {a}\nOther examples: {a / 'examples'}\nRe-run `workspace.py init` to update.\n")
     print(f"vendored Anatomy from {a} → {dst}")
 

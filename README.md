@@ -46,12 +46,11 @@ What makes the output trustworthy:
 
 ## Install
 
-Course Studio needs the **Anatomy** skill for figures. Install both.
+One install. The Anatomy figure engine is bundled inside the skill, so there is nothing else to add.
 
 ### With the skills CLI (`npx`)
 
 ```bash
-npx skills add wheresryan22/anatomy -g -a claude-code
 npx skills add akshaypjoshi/course-studio -g -a claude-code
 ```
 
@@ -65,8 +64,6 @@ Inside Claude Code:
 /plugin marketplace add akshaypjoshi/course-studio
 /plugin install course-studio@course-studio
 ```
-
-Then install Anatomy (it ships as a skill, not a plugin): `npx skills add wheresryan22/anatomy -g -a claude-code`.
 
 ### Requirements
 
@@ -130,16 +127,18 @@ All in `skills/course-studio/scripts/`; the skill runs them for you.
 
 ```bash
 pip install -r skills/course-studio/requirements.txt && python3 -m playwright install chromium
-tests/smoke.sh [path-to-anatomy]     # rebuilds the example course and checks every page
+tests/smoke.sh                       # rebuilds the example course and checks every page
 ```
 
-CI runs the same smoke test on every push. `evals/` holds trigger evals (prompts that should and shouldn't load the skill) and task evals with expectations, in the format used by Anthropic's `skill-creator`.
+CI runs the same smoke test on every push.
 
-Repository layout: `skills/course-studio/` is the skill itself (what `npx skills add` installs); `.claude-plugin/` makes the repo a Claude Code plugin marketplace.
+The bundled Anatomy engine lives in `skills/course-studio/anatomy/` (pinned version in its `VERSION` file). To update it from upstream, run `tools/update-anatomy.sh [git-ref]`, then the smoke test. `evals/` holds trigger evals (prompts that should and shouldn't load the skill) and task evals with expectations, in the format used by Anthropic's `skill-creator`.
+
+Repository layout: `skills/course-studio/` is the skill itself (what `npx skills add` installs); `.claude-plugin/` makes the repo a Claude Code plugin marketplace; `tools/` holds maintenance scripts.
 
 ## Credits
 
-Figures are drawn with [Anatomy](https://github.com/wheresryan22/anatomy) by wheresryan22 (MIT).
+Figures are drawn with [Anatomy](https://github.com/wheresryan22/anatomy) by Ryan ([@wheresryan22](https://github.com/wheresryan22)), bundled under its MIT license — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The bundled copy leaves out Anatomy's community-gallery publisher and its test suite; for standalone isometric figures outside courses, install Anatomy itself.
 
 ## License
 

@@ -1,6 +1,6 @@
 // Figure {{id}} — built with the Anatomy skill.
 //
-// Contract with course-studio (keep these, replace everything else by following Anatomy's SKILL.md
+// Contract with course-studio (keep these, replace everything else by following Anatomy's ANATOMY.md
 // and its closest example: {{ANATOMY}}/examples/dial-indicator/build.mjs is vendored; the others are
 // listed in {{ANATOMY}}/SOURCE.txt):
 //   1. Import the kit from the vendored copy: {{ANATOMY}}/kit/iso-kit.mjs
@@ -27,7 +27,7 @@ const HEIGHT = 380;
 // import { step, initial } from "./model.mjs";
 
 function build(theme) {
-  // ---- geometry, painter's order, card: see Anatomy's SKILL.md workflow steps 4-8 ----
+  // ---- geometry, painter's order, card: see Anatomy's ANATOMY.md workflow steps 4-8 ----
   const P = k.fitProjection([[-100, -60, 0], [100, 60, 80]], WIDTH, HEIGHT, { pad: 30, azimuth: 45 });
   const art = ""; // solids, lines, dots, wires
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: "TODO: what the object is and what it shows", body: art });

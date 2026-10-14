@@ -44,7 +44,7 @@ A brief that leaves the object vague produces a vague figure. A brief whose numb
 ## 4. Building with Anatomy
 
 1. Make sure the workspace is wired: `python3 scripts/workspace.py init <courses-dir>` copies Anatomy's `kit/` and `scripts/` into `<courses-dir>/_anatomy/` (once; re-run to update). The figure's `build.mjs` stub already imports from there.
-2. **Load the Anatomy skill** (invoke it by name, `anatomy`, or read its `SKILL.md`) and follow its workflow from step 1 — size, truth, object, parts list, world, geometry, painter's order, card, live behaviour, verify — with the brief as the spec. Open Anatomy's closest example before starting, as it instructs. Work inside `figures/<id>/`.
+2. **Read Anatomy's guide**, `anatomy/ANATOMY.md` in this skill's folder (also copied to `<courses>/_anatomy/ANATOMY.md`), and follow its workflow from step 1 — size, truth, object, parts list, world, geometry, painter's order, card, live behaviour, verify — with the brief as the spec. Open Anatomy's closest example before starting, as it instructs (all eight are in this skill's `anatomy/examples/`). Work inside `figures/<id>/`.
 3. Keep course-studio's output contract (also written at the top of the stub):
    - `node build.mjs` writes **both** `<id>.html` (dark) and `<id>-light.html` (light) in the figure folder.
    - The card's `fig` is `Fig k`; `title`, `hint`, `readout`, `keys`, `caption` come from the brief.
@@ -60,7 +60,7 @@ When a chapter has 2+ figures, or a batch of chapters is requested, and the Agen
 
 ```
 Build an Anatomy figure.
-- Load the `anatomy` skill (or read its SKILL.md at <path>) and follow its workflow fully, including verification.
+- Read Anatomy's guide at <skill path>/anatomy/ANATOMY.md and follow its workflow fully, including verification. Its kit/, scripts/, references/ and examples/ sit next to it.
 - Brief: <absolute path>/figures/<id>/brief.md — it is the spec; don't change the idea, numbers or card text without saying why.
 - Work in <absolute path>/figures/<id>/. build.mjs is a stub that already imports the vendored kit from <courses>/_anatomy; keep its output contract:
   `node build.mjs` writes <id>.html and <id>-light.html next to it.
@@ -82,5 +82,5 @@ When a subagent returns, check its deviation notes against the chapter text and 
 Anatomy needs Node 20.10+ and Chrome/Chromium for its checks. If they're missing, say so, keep the figure as a pending box with its complete brief (the chapter still builds and reads well), and tell the user the exact command to build it on their machine:
 
 ```
-cd courses/<course>/chapters/<nn-slug>/figures/<id> && claude "/anatomy build this figure from brief.md"
+cd courses/<course>/chapters/<nn-slug>/figures/<id> && claude "Use course-studio to build this figure from brief.md"
 ```

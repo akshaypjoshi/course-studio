@@ -2,16 +2,16 @@
 name: course-studio
 description: Plan and write technical courses, chapters, lessons, notes and cheat sheets — with every diagram built as an interactive isometric figure by the Anatomy skill — and build them into styled, self-checking HTML pages. Ships presets for Data Structures & Algorithms, System Design, JavaScript and Low-Level Design, and works for any technical subject. Use whenever the user asks to create or outline a course, a syllabus or curriculum, a chapter or lesson, notes, revision notes, a cheat sheet, interview-prep material, or "explain X visually for the course", even if they only name a topic like "binary search chapter" or "notes on consistent hashing".
 license: MIT
-compatibility: Needs the Anatomy skill (wheresryan22/anatomy), Python 3.9+ with markdown, pyyaml, pygments (playwright + Chromium for checks), and Node.js 20.10+ for figures.
+compatibility: Bundles the Anatomy figure engine (MIT). Needs Python 3.9+ with markdown, pyyaml, pygments (playwright + Chromium for checks), and Node.js 20.10+ for figures.
 ---
 
 # Course Studio
 
-Course Studio writes the teaching; **Anatomy draws the figures**. A course here is a `course.json` (the card, outcomes and syllabus), chapters written in Markdown, and for each chapter one signature Anatomy figure — a detailed isometric machine whose working *is* the chapter's insight (a gauge rack whose probe halves the span, a turntable where a new peg captures one arc of keys). The build scripts turn it into course-catalog pages: warm paper, heavy grotesk titles, mono metadata, one accent per course, light and dark.
+Course Studio writes the teaching; **Anatomy draws the figures** — its engine is bundled in `anatomy/` (kit, scripts, references, examples; guide in `anatomy/ANATOMY.md`), so nothing else needs installing. A course here is a `course.json` (the card, outcomes and syllabus), chapters written in Markdown, and for each chapter one signature Anatomy figure — a detailed isometric machine whose working *is* the chapter's insight (a gauge rack whose probe halves the span, a turntable where a new peg captures one arc of keys). The build scripts turn it into course-catalog pages: warm paper, heavy grotesk titles, mono metadata, one accent per course, light and dark.
 
 ## Setup (once per machine)
 
-- **Anatomy** must be installed: `npx skills add wheresryan22/anatomy -g -a claude-code` (or set `ANATOMY_SKILL=<path>`). Without it, plan and write anyway — figures stay as pending boxes with complete briefs (figures.md §7).
+- **Anatomy** is bundled in `anatomy/`; `workspace.py init` copies it into each workspace. Figures need Node.js 20.10+ (and Chrome/Chromium for checks); without them, plan and write anyway — figures stay as pending boxes with complete briefs (figures.md §7).
 - **Python packages**: `pip install -r requirements.txt` from this skill's folder (markdown, pyyaml, pygments; playwright for checks, then `playwright install chromium`). The scripts print the exact missing package if one is absent.
 
 ## Files
@@ -24,6 +24,7 @@ Course Studio writes the teaching; **Anatomy draws the figures**. A course here 
 - `references/writing.md` — the chapter arc, per-course must-haves, writing rules, the Markdown conventions, notes and cheat sheets.
 - `references/figures.md` — which ideas get a figure, time budget, the brief, building with Anatomy, parallel figures, integration.
 - `references/object-atlas.md` — concept → machine starting points for ~90 DSA / SD / JS / LLD concepts, and how to invent one.
+- `anatomy/` — the bundled Anatomy engine: `ANATOMY.md` (its workflow), `kit/`, `scripts/` (capture, drive, lines checks), `references/`, `examples/`. Pinned version in `anatomy/VERSION`.
 - `assets/templates/` — `course.json`, `brief.md`, `build.mjs` (figure stub wired to the vendored kit).
 - `examples/courses/dsa/` — a finished, verified chapter (Ch 5 Hashing) in the real layout: `course.json`, `chapter.md`, and its Anatomy figure's `brief.md`, `model.mjs` and `build.mjs`. Read it before writing your first chapter to calibrate depth, tone and how text and figure point at each other. To rebuild it, copy `examples/courses/` into a workspace and run `workspace.py init` on it.
 
@@ -46,7 +47,7 @@ Say the scope in one line before starting — e.g. "Writing Ch 4 with one Anatom
 1. **Context.** Read `course.json` (or create it from `assets/templates/course.json` via `workspace.py course`). Run `workspace.py init <courses>` once per workspace so figures can import the kit. Then `workspace.py chapter <course-dir> <n>` scaffolds `chapter.md` and a brief per planned figure.
 2. **Outline.** Write the section list with one outcome sentence each (writing.md §2) and the course's must-haves (§3). Identify the single insight that most needs to be *seen moving* — that's the signature figure (figures.md §1). Pick its object from the atlas or invent one with the atlas's method.
 3. **Brief the figure early.** Write the paragraph that surrounds `::figure`, then fill `figures/<id>/brief.md` from it — insight, truth model with the chapter's exact example numbers, object and mapping, interaction and tour beats, card text (figures.md §3).
-4. **Build the figure with Anatomy.** Put the truth model in `figures/<id>/model.mjs` so the figure and the chapter's numbers share one source. Load the `anatomy` skill and follow its workflow in `figures/<id>/` with the brief as the spec, keeping the output contract (`<id>.html` + `<id>-light.html` from one `node build.mjs`). With the Agent tool available, hand each figure to a subagent as soon as its brief exists and write the chapter meanwhile (figures.md §5); without it, build the figure first, then write.
+4. **Build the figure with Anatomy.** Put the truth model in `figures/<id>/model.mjs` so the figure and the chapter's numbers share one source. Read `anatomy/ANATOMY.md` (in this skill's folder) and follow its workflow in `figures/<id>/` with the brief as the spec, keeping the output contract (`<id>.html` + `<id>-light.html` from one `node build.mjs`). With the Agent tool available, hand each figure to a subagent as soon as its brief exists and write the chapter meanwhile (figures.md §5); without it, build the figure first, then write.
 5. **Write the chapter** in `chapter.md` following the arc and rules. Run every code block in a scratch file; verify every number and real-world claim.
 6. **Build and check.** `build_chapter.py chapter.md` → `check_pages.py` on `dist/` (default, and `--mobile --dark`). Read the screenshots: the page, then each figure in context. Fix until the only PROBLEM lines are figures you've deliberately left pending.
 7. **Reconcile text and figure.** The text must name moments the figure shows, with the same numbers and words. Update `course.json` (`status`, final figure ids/objects), rebuild the course page.
