@@ -1,0 +1,82 @@
+{
+  "slug": "how-rockets-work",
+  "code": "RKT",
+  "title": "How Rockets Work",
+  "tagline": "From Newton's third law to a full-flow engine and a booster that lands. Learn it by taking the hardware apart.",
+  "level": "Beginner",
+  "hours": 5,
+  "languages": [],
+  "status": "coming_soon",
+  "price": null,
+  "currency": "USD",
+  "order": 2,
+  "accent": "#2F5BD3", "tint": "#DFE6F7", "accentDark": "#7C9CFF", "tintDark": "#18213A",
+  "audience": "Curious adults with no engineering background who want to understand how modern rockets such as SpaceX's Starship actually work",
+  "prerequisites": [
+    "School-level ideas of force, mass and pressure; no maths beyond multiplying and dividing"
+  ],
+  "outcomes": [
+    "Explain why a rocket accelerates, in space as well as in air",
+    "Use the rocket equation to say why most of a rocket is propellant",
+    "Trace oxygen and methane through a full-flow staged-combustion engine, part by part",
+    "Explain why rockets drop stages, and how a booster flies back and lands",
+    "Read a rocket's spec sheet and check its numbers with back-of-envelope arithmetic"
+  ],
+  "glossary": {
+    "thrust": "the force the engine pushes the rocket with, given here in tonnes-force (tf): 1 tf holds up 1 tonne against Earth's gravity",
+    "chamber pressure": "the pressure of the burning gas inside the main combustion chamber, in bar (1 bar is about atmospheric pressure at sea level)",
+    "preburner": "a small combustion chamber that burns a little propellant to make hot gas for a turbine",
+    "turbopump": "a turbine and a pump on one shaft: hot gas spins the turbine, the pump forces propellant into the engine",
+    "mixture ratio": "kilograms of oxygen burned per kilogram of fuel"
+  },
+  "chapters": [
+    {
+      "n": 1, "slug": "why-rockets-fly", "title": "Why rockets fly",
+      "summary": "A rocket throws mass backwards fast and is pushed forwards in return. It needs nothing to push against, so it works best in a vacuum.",
+      "minutes": 30, "outcomes": ["Explain thrust as momentum thrown backwards", "Say why a rocket needs no air to push against"],
+      "topics": ["Newton's third law", "momentum", "thrust", "thrust-to-weight"],
+      "figures": [{ "id": "fig-01-thrust", "concept": "thrust comes from mass thrown backwards", "object": "a small engine on a thrust stand with a load cell and a propellant tank on a scale", "size": "Figure" }],
+      "status": "planned"
+    },
+    {
+      "n": 2, "slug": "the-rocket-equation", "title": "The rocket equation",
+      "summary": "Every bit of speed costs propellant, and the propellant has to lift itself. That is why more than nine tenths of a rocket on the pad is propellant.",
+      "minutes": 35, "outcomes": ["Use Δv = vₑ ln(m₀/m₁) with real numbers", "Explain why staging helps"],
+      "topics": ["delta-v", "exhaust speed", "mass ratio", "Tsiolkovsky"],
+      "figures": [{ "id": "fig-01-mass-ratio", "concept": "each step of speed costs a fixed fraction of the remaining mass", "object": "a stack of propellant tanks on a scale beside a small payload, draining one by one", "size": "Figure" }],
+      "status": "planned"
+    },
+    {
+      "n": 3, "slug": "inside-the-engine", "title": "Inside the engine",
+      "summary": "A rocket engine is a pump problem. SpaceX's Raptor burns a little of each propellant just to drive its pumps, and nothing is thrown away.",
+      "minutes": 30, "outcomes": ["Trace oxygen and methane through a full-flow staged-combustion engine", "Explain why the pumps, not the fire, are the hard part", "Check an engine's spec sheet with thrust = flow × exhaust speed"],
+      "topics": ["turbopump", "preburner", "full-flow staged combustion", "chamber pressure", "nozzle", "Raptor 2"],
+      "figures": [{ "id": "fig-01-engine-cycle", "concept": "both propellants drive their own pump on the way to the chamber", "object": "Raptor 2 on a vertical test stand, taken apart part by part and fired", "size": "Hero" }],
+      "status": "drafted"
+    },
+    {
+      "n": 4, "slug": "staging-and-reuse", "title": "Staging and reuse",
+      "summary": "Dropping empty tanks is the cheapest way to go faster. Bringing the booster back is how you stop paying for it every flight.",
+      "minutes": 35, "outcomes": ["Explain why two stages beat one", "Describe how a booster flies back and is caught or lands"],
+      "topics": ["staging", "boostback", "landing burn", "reuse"],
+      "figures": [{ "id": "fig-01-staging", "concept": "an empty stage is dead weight", "object": "a two-stage stack on a launch mount that separates in flight", "size": "Figure" }],
+      "status": "planned"
+    },
+    {
+      "n": 5, "slug": "steering", "title": "Steering",
+      "summary": "Rockets steer by pointing their engines. Grid fins take over when the booster falls back through the air.",
+      "minutes": 30, "outcomes": ["Explain thrust vectoring with a gimballed engine", "Say when grid fins help and when they can't"],
+      "topics": ["gimbal", "thrust vector control", "grid fins", "guidance"],
+      "figures": [{ "id": "fig-01-gimbal", "concept": "tilting the engine turns the rocket", "object": "an engine on a gimbal with two actuators under a pivoting stage", "size": "Figure" }],
+      "status": "planned"
+    },
+    {
+      "n": 6, "slug": "getting-to-orbit", "title": "Getting to orbit",
+      "summary": "Orbit is falling and missing the ground. It takes about 7.8 km/s sideways at low altitude, which is why going up is the easy part.",
+      "minutes": 30, "outcomes": ["Explain orbit as continuous falling", "Estimate the speed needed for low Earth orbit"],
+      "topics": ["orbit", "orbital speed", "gravity turn"],
+      "figures": [{ "id": "fig-01-orbit", "concept": "faster shots fall around the Earth", "object": "Newton's cannon on a mountain on a small globe", "size": "Figure" }],
+      "status": "planned"
+    }
+  ]
+}

@@ -20,8 +20,11 @@ for fig in "$WS"/courses/*/chapters/*/figures/*/; do
 done
 
 "$PY" "$SKILL/scripts/build_course.py" "$WS/courses" --catalog
+test -f "$WS/courses/how-rockets-work/dist/03-inside-the-engine.html"
 "$PY" "$SKILL/scripts/check_pages.py" "$WS/courses/dsa/dist" "${SHOTS:-$WS/shots}"
 "$PY" "$SKILL/scripts/check_pages.py" "$WS/courses/dsa/dist" "${SHOTS:-$WS/shots}-mobile-dark" --mobile --dark
+"$PY" "$SKILL/scripts/check_pages.py" "$WS/courses/how-rockets-work/dist" "${SHOTS:-$WS/shots}-rockets"
+"$PY" "$SKILL/scripts/check_pages.py" "$WS/courses/how-rockets-work/dist" "${SHOTS:-$WS/shots}-rockets-mobile-dark" --mobile --dark
 
 # scaffolds work on a fresh course
 "$PY" "$SKILL/scripts/workspace.py" course "$WS/courses" smoke

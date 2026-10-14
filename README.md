@@ -22,7 +22,7 @@
 
 Ask for *"the binary search chapter"*, *"notes on consistent hashing"* or *"a course on how SpaceX rockets work"* and you get a dense, verified chapter in Markdown, a signature figure whose working **is** the chapter's insight (a probe that halves a rack of gauge blocks, a turntable where a new peg captures one arc of keys), and a built page that has been checked in a headless browser on desktop, phone and dark mode.
 
-**Website and live demo:** [skills.akshayjoshi.dev/course-studio](https://skills.akshayjoshi.dev/course-studio/) has two figures running live in the page (the hash sorter and a Raptor 2 rocket engine you can take apart), and the finished [Hashing chapter](https://skills.akshayjoshi.dev/course-studio/example/05-hashing.html).
+**Website and live demo:** [skills.akshayjoshi.dev/course-studio](https://skills.akshayjoshi.dev/course-studio/) has both figures running live in the page, and two finished demo chapters: [Hashing](https://skills.akshayjoshi.dev/course-studio/example/dsa/05-hashing.html) from an algorithms course, and [Inside the engine](https://skills.akshayjoshi.dev/course-studio/example/how-rockets-work/03-inside-the-engine.html) from a course on how rockets work, built around SpaceX's Raptor 2 that you can take apart and fire.
 
 ## What it does
 
@@ -46,7 +46,11 @@ What makes the output trustworthy:
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset=".github/assets/chapter-dark.png">
-    <img src=".github/assets/chapter-light.png" width="720" alt="The built Hashing chapter page: a peach hero card with the title, outcomes and a numbered table of contents.">
+    <img src=".github/assets/chapter-light.png" width="420" alt="The built Hashing chapter page: a peach hero card with the title, outcomes and a numbered table of contents.">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rocket-chapter-dark.png">
+    <img src=".github/assets/rocket-chapter-light.png" width="420" alt="The built Inside the engine chapter page from How Rockets Work: a blue hero card with the title, outcomes and a numbered table of contents.">
   </picture>
 </p>
 
@@ -151,7 +155,7 @@ skills/course-studio/      the skill itself (what npx skills add installs)
   references/              course design, writing rules, figures, object atlas
   scripts/                 workspace, build_chapter, build_course, check_pages
   assets/                  page CSS and templates (course.json, brief.md, build.mjs)
-  examples/courses/dsa/    a finished chapter with its figure
+  examples/courses/        two finished chapters with their figures: dsa (Hashing), how-rockets-work (Inside the engine)
   anatomy/                 the bundled Anatomy engine (pinned in VERSION)
 evals/                     trigger evals and task evals (skill-creator format)
 site/                      the website: landing page + build.py (builds the live demo)

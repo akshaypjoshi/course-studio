@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0 (2026-10-14)
+
+- **Second example: How Rockets Work, Ch 3 "Inside the engine".** A course for curious adults with six planned chapters and one written: how SpaceX's Raptor 2 drives its pumps (full-flow staged combustion), with real numbers dated and sourced in `model.mjs`, back-of-envelope checks, and a Hero figure adapted from Anatomy's Raptor 2 example that you can take apart and fire.
+- Fixed: table-of-contents entries for headings with apostrophes showed `&rsquo;`; course pages showed an empty price pill when the price is `null`.
+- Website: both chapters as demos (now under `/example/dsa/` and `/example/how-rockets-work/`, with redirects from the old Hashing URLs); the Raptor section now shows the chapter's own figure; the presets section is gone.
+- Smoke test checks both example courses.
+
 ## 0.4.0 (2026-10-14)
 
 - **Any subject, not just software.** The skill now covers engineering, science, the body, business and more. It adds must-haves for "how things work", natural sciences, business and humanities (writing.md §3), a "draw the real thing" rule for physical subjects, and a new atlas section with rocket engines, staging, orbits, the heart, gears, locks, tides and markets.

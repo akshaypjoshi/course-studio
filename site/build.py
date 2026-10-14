@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Build the Course Studio site: the landing page plus a live demo built by the skill itself.
+"""Build the Course Studio site: the landing page plus live demos built by the skill itself.
 
     python3 site/build.py <out-dir>
 
 Output:
-    <out>/index.html, <out>/assets/...          landing page
-    <out>/example/index.html                    the DSA course page (syllabus)
-    <out>/example/05-hashing.html               the Hashing chapter with its embedded figure
-    <out>/example/figure/<id>[-light].html      the figure on its own (embedded live on the landing page)
-    <out>/example/figure/raptor-engine[-light].html   Anatomy's Raptor 2 example (the "any subject" demo)
+    <out>/index.html, <out>/assets/...                     landing page
+    <out>/example/<course>/index.html                      each example course page (syllabus)
+    <out>/example/<course>/<chapter>.html                  each written chapter, figures embedded
+    <out>/example/figure/<id>[-light].html                 each figure on its own (embedded live on the landing page)
+    <out>/example/index.html, <out>/example/05-hashing.html  redirects from the first site's URLs
 
 Needs: python deps from skills/course-studio/requirements.txt (playwright not needed) and Node.js 20.10+.
 The hub repo (akshaypjoshi/skills) runs this to publish skills.akshayjoshi.dev/course-studio/.
@@ -22,12 +22,20 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 SKILL = ROOT / "skills" / "course-studio"
-FIG = "fig-01-hash-sorter"
+ASSETS = ("figure-light.png", "figure-dark.png", "chapter-light.png", "chapter-dark.png",
+          "rocket-chapter-light.png", "rocket-chapter-dark.png")
+REDIRECTS = {"index.html": "dsa/index.html", "05-hashing.html": "dsa/05-hashing.html"}
 
 
 def run(*cmd, cwd=None):
     print("+", " ".join(str(c) for c in cmd))
     subprocess.run([str(c) for c in cmd], cwd=cwd, check=True)
+
+
+def redirect(to: str) -> str:
+    return (f'<!doctype html><meta charset="utf-8"><title>Moved</title>'
+            f'<link rel="canonical" href="{to}"><meta http-equiv="refresh" content="0; url={to}">'
+            f'<p>Moved to <a href="{to}">{to}</a>.</p>')
 
 
 def main():
@@ -41,31 +49,26 @@ def main():
     # landing page and its assets
     shutil.copy2(HERE / "index.html", out / "index.html")
     shutil.copytree(HERE / "assets", out / "assets")
-    for name in ("figure-light.png", "figure-dark.png", "chapter-light.png", "chapter-dark.png"):
+    for name in ASSETS:
         shutil.copy2(ROOT / ".github" / "assets" / name, out / "assets" / name)
 
-    # the live demo, built by the skill's own scripts from its bundled example
+    # the live demos, built by the skill's own scripts from its bundled examples
+    example, figures = out / "example", out / "example" / "figure"
+    figures.mkdir(parents=True)
     with tempfile.TemporaryDirectory() as tmp:
         courses = Path(tmp) / "courses"
         shutil.copytree(SKILL / "examples" / "courses", courses)
         run(sys.executable, SKILL / "scripts" / "workspace.py", "init", courses)
         for build in sorted(courses.glob("*/chapters/*/figures/*/build.mjs")):
             run("node", "build.mjs", cwd=build.parent)
-        run(sys.executable, SKILL / "scripts" / "build_course.py", courses / "dsa")
-        shutil.copytree(courses / "dsa" / "dist", out / "example", ignore=shutil.ignore_patterns("shots*"))
-        fig_dir = next(courses.glob(f"dsa/chapters/*/figures/{FIG}"))
-        (out / "example" / "figure").mkdir()
-        for f in (f"{FIG}.html", f"{FIG}-light.html"):
-            shutil.copy2(fig_dir / f, out / "example" / "figure" / f)
+            for page in build.parent.glob("*.html"):
+                shutil.copy2(page, figures / page.name)
+        for course in sorted(p.parent for p in courses.glob("*/course.json")):
+            run(sys.executable, SKILL / "scripts" / "build_course.py", course)
+            shutil.copytree(course / "dist", example / course.name, ignore=shutil.ignore_patterns("shots*"))
 
-        # a real machine, to show the skill isn't only for software: the bundled Raptor 2 example
-        anatomy = Path(tmp) / "anatomy"
-        shutil.copytree(SKILL / "anatomy", anatomy)
-        for flag in ([], ["--light"]):
-            run("node", "examples/raptor-engine/build.mjs", *flag, cwd=anatomy)
-        for f in ("raptor-engine.html", "raptor-engine-light.html"):
-            shutil.copy2(anatomy / "examples" / "raptor-engine" / f, out / "example" / "figure" / f)
-
+    for old, new in REDIRECTS.items():
+        (example / old).write_text(redirect(new), encoding="utf-8")
     print(f"site built in {out}")
 
 

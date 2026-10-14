@@ -17,6 +17,7 @@ Markdown conventions (see references/writing.md §5):
   ::figure <fig-id> | caption                  an Anatomy figure from figures/<fig-id>/
 """
 import base64
+import html
 import gzip
 import json
 import re
@@ -202,7 +203,7 @@ def number_headings(html_body: str):
         if 'class="nonum"' in attrs:
             return m.group(0)
         n += 1
-        plain = re.sub(r"<[^>]+>", "", text)
+        plain = html.unescape(re.sub(r"<[^>]+>", "", text))  # smarty turns ' into &rsquo;; esc() re-escapes later
         idm = re.search(r'id="([^"]+)"', attrs)
         hid = idm.group(1) if idm else re.sub(r"[^a-z0-9]+", "-", plain.lower()).strip("-")
         toc.append((hid, plain))

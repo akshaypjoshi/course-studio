@@ -1,6 +1,6 @@
 {
   "name": "course-studio",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Plan and write courses, chapters, notes and cheat sheets on any subject, from algorithms to rocket engines, with every diagram built as an interactive isometric figure by the bundled Anatomy engine.",
   "author": {
     "name": "Akshay Joshi",

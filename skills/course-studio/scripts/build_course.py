@@ -73,8 +73,9 @@ def build_course(root: Path) -> Path:
         prereq = '<section class="outcomes"><b>Before you start</b><ul>' + "".join(
             f"<li>{esc(o)}</li>" for o in c["prerequisites"]) + "</ul></section>"
     status_pill = '<span class="pill dark">Available</span>' if c.get("status") == "available" else '<span class="pill">Coming soon</span>'
+    price_pill = f'<span class="pill">{esc(price(c))}</span>' if price(c) else ""
     body = f"""<main class="page">
-<header class="hero"><div class="badges">{status_pill}<span class="pill">{esc(price(c))}</span></div><div class="meta">{esc(meta)}</div>
+<header class="hero"><div class="badges">{status_pill}{price_pill}</div><div class="meta">{esc(meta)}</div>
 <h1>{esc(c['title'])}</h1><p class="dek">{esc(c.get('tagline', ''))}</p><div class="glyph" aria-hidden="true">{esc(c['code'])}</div></header>
 {outcomes}{prereq}
 <article class="prose"><h2 class="nonum" style="margin-top:36px">Syllabus</h2></article>

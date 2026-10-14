@@ -27,6 +27,7 @@ Course Studio writes the teaching; **Anatomy draws the figures**. Its engine is 
 - `anatomy/`: the bundled Anatomy engine, with `ANATOMY.md` (its workflow), `kit/`, `scripts/` (capture, drive, lines checks), `references/`, `examples/`. Pinned version in `anatomy/VERSION`.
 - `assets/templates/`: `course.json`, `brief.md`, `build.mjs` (figure stub wired to the vendored kit).
 - `examples/courses/dsa/`: a finished, verified chapter (Ch 5 Hashing) in the real layout: `course.json`, `chapter.md`, and its Anatomy figure's `brief.md`, `model.mjs` and `build.mjs`. Read it before writing your first chapter to calibrate depth, tone and how text and figure point at each other. To rebuild it, copy `examples/courses/` into a workspace and run `workspace.py init` on it.
+- `examples/courses/how-rockets-work/`: a second finished chapter outside software (Ch 3 Inside the engine, curious adults): sourced and dated real-world numbers in `model.mjs`, no code blocks, and a Hero figure of SpaceX's Raptor 2 adapted from Anatomy's `examples/raptor-engine` (`raptor.mjs`, wrapped by a `build.mjs` that writes both themes). Read it before a chapter on a physical or real-world subject.
 
 ## Decide the scope first
 
