@@ -19,6 +19,11 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Install Python deps and Chromium
+        run: |
+          pip install -r skills/course-studio/requirements.txt
+          python -m playwright install --with-deps chromium
+
       - name: Validate manifests and frontmatter
         run: |
           python -m json.tool .claude-plugin/plugin.json > /dev/null
@@ -33,11 +38,6 @@ jobs:
           assert len(fm["description"]) <= 1024, len(fm["description"])
           print("SKILL.md frontmatter ok")
           PY
-
-      - name: Install Python deps and Chromium
-        run: |
-          pip install -r skills/course-studio/requirements.txt
-          python -m playwright install --with-deps chromium
 
       - name: Fetch the Anatomy skill
         run: git clone --depth 1 https://github.com/wheresryan22/anatomy "$RUNNER_TEMP/anatomy"
